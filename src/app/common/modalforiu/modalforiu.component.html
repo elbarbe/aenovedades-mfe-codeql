@@ -1,0 +1,26 @@
+<p-dialog header="" [(visible)]="visible" [modal]="true" (onHide)="cancel()" [blockScroll]="true" position="top"
+    [style]="{'padding-top': '60px'}"
+    [draggable]="true" [closeOnEscape]="true" [closable]="true" [resizable]="false"
+    styleClass="col-12 col-sm-11 col-md-11 modalForIU"
+    [contentStyle]="{'max-height':'500px', 'display': 'flow-root'}" >
+    <p-header>{{title}}</p-header>
+
+    <genericsiu *ngIf="selector=='genericsiu'"></genericsiu>
+
+    <imes-solicitudnovedad-siu-modificarnummeses *ngIf="selector=='imes-solicitudnovedad-siu-modificarnummeses'"></imes-solicitudnovedad-siu-modificarnummeses>
+    <imes-solicitudnovedad-siu-taddfamilia *ngIf="selector=='imes-solicitudnovedad-siu-taddfamilia'"></imes-solicitudnovedad-siu-taddfamilia>
+    <imes-familianovedad-siu-tcrearmanual *ngIf="selector=='imes-familianovedad-siu-tcrearmanual'"></imes-familianovedad-siu-tcrearmanual>
+    <imes-familianovedad-siu-tmodificarmanual *ngIf="selector=='imes-familianovedad-siu-tmodificarmanual'"></imes-familianovedad-siu-tmodificarmanual>
+    <imes-usuarionovedad-siu-tmodificarmanual *ngIf="selector=='imes-usuarionovedad-siu-tmodificarmanual'"></imes-usuarionovedad-siu-tmodificarmanual>
+    <imes-usuarionovedad-siu-tcambiarparentesco *ngIf="selector=='imes-usuarionovedad-siu-tcambiarparentesco'"></imes-usuarionovedad-siu-tcambiarparentesco>
+    <imes-usuarionovedad-siu-tcambiartipoident *ngIf="selector=='imes-usuarionovedad-siu-tcambiartipoident'"></imes-usuarionovedad-siu-tcambiartipoident>
+    <imes-usuarionovedad-siu-cambiarexcluido *ngIf="selector=='imes-usuarionovedad-siu-cambiarexcluido'"></imes-usuarionovedad-siu-cambiarexcluido>
+    <imes-usuarionovedad-siu-cambiaras *ngIf="selector=='imes-usuarionovedad-siu-cambiaras'"></imes-usuarionovedad-siu-cambiaras>
+    <imes-usuarionovedad-siu-cambiarps *ngIf="selector=='imes-usuarionovedad-siu-cambiarps'"></imes-usuarionovedad-siu-cambiarps>
+    <imes-usuarionovedad-siu-cambiarro *ngIf="selector=='imes-usuarionovedad-siu-cambiarro'"></imes-usuarionovedad-siu-cambiarro>
+    <imes-usuarionovedad-siu-modificarsunummeses *ngIf="selector=='imes-usuarionovedad-siu-modificarsunummeses'"></imes-usuarionovedad-siu-modificarsunummeses>
+    <imes-documentonovedad-siu-taprobar *ngIf="selector=='imes-documentonovedad-siu-taprobar'"></imes-documentonovedad-siu-taprobar>
+    <imes-documentonovedad-siu-tdevolver *ngIf="selector=='imes-documentonovedad-siu-tdevolver'"></imes-documentonovedad-siu-tdevolver>
+
+</p-dialog>
+

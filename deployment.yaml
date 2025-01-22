@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aenovedades-mfe
+  labels:
+    app: aenovedades-mfe
+    app.kubernetes.io/component: aenovedades-mfe
+    app.kubernetes.io/instance: aenovedades-mfe
+    app.kubernetes.io/name: aenovedades-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aenovedades-mfe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aenovedades-mfe
+  template:
+    metadata:
+      labels:
+        app: aenovedades-mfe
+        deployment: aenovedades-mfe
+    spec:
+      containers:
+        - name: aenovedades-mfe
+#INIIMAGE
+          image: 'image-registry.openshift-image-registry.svc:5000/soporte-colsanitas-dev/aenovedades-mfe:latest'
+#FINIMAGE
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 200Mi
+            requests:
+              cpu: 10m
+              memory: 100Mi
+          env:
+            - name: TZ
+              value: "America/Bogota"

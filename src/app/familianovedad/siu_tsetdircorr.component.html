@@ -1,0 +1,25 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lense [field]="puthisFamiliaNovedad" *ngIf="puthisFamiliaNovedad.visible" (selected)="onputhisfamilianovedadChange()"
+                (cleared)="cleanputhisfamilianovedad()" (searched)="doSearchAction('puthisFamiliaNovedad')"></imes-lense>
+            <imes-preload [field]="ptupuagrDepartamento" *ngIf="ptupuagrDepartamento.visible" (selected)="onptupuagrdepartamentoChange()"></imes-preload>
+            <imes-preload [field]="ptupuagrMunicipio" *ngIf="ptupuagrMunicipio.visible"></imes-preload>
+            <imes-input-string [field]="ptupuatrDireccionCompleta" *ngIf="ptupuatrDireccionCompleta.visible"></imes-input-string>
+            <imes-input-radio [field]="ptupuatrRural" *ngIf="ptupuatrRural.visible"></imes-input-radio>
+            <imes-lensesearch [field]="ptupuagrPais" *ngIf="ptupuagrPais.visible"
+                (selected)="processptupuagrpaisSelected($event)" (cleared)="cleanptupuagrpais()"
+                (keypressLenseSearch)="onKeypressLenseSearch('onptupuagrpaisChange')"
+                (searched)="doSearchAction('ptupuagrPais')"></imes-lensesearch>
+            <imes-input-string [field]="ptupuatrCorreoElectronico" *ngIf="ptupuatrCorreoElectronico.visible"></imes-input-string>
+            <imes-input-string [field]="ptupuatrTelefonoFijo" *ngIf="ptupuatrTelefonoFijo.visible"></imes-input-string>
+            <imes-input-string [field]="ptupuatrTelefonoCelular" *ngIf="ptupuatrTelefonoCelular.visible"></imes-input-string>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

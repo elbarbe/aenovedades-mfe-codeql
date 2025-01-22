@@ -1,0 +1,104 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h3 class="title">{{title}}</h3>
+
+        <div class="master" [ngClass]="cssClasses">
+            <h3 class="title">{{master.title}}</h3>
+            <div class="iiuRegion" [ngClass]="master.cssClasses">
+                <imes-actionsnavigations [queryIU]="master"></imes-actionsnavigations>
+                <!-- Display Set elements -->
+                <div class="card displaySet">
+                    <div class="card-header">{{master.title}}</div>
+                    <div class="card-body">
+                        <imes-input-string [field]="master.dseDrvNumRadicadoStr" *ngIf="master.dseDrvNumRadicadoStr.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dsePlanTProductoTDescripcion" *ngIf="master.dsePlanTProductoTDescripcion.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dsePlanTNombre" *ngIf="master.dsePlanTNombre.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseNumContrato" *ngIf="master.dseNumContrato.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseEstadoContratoDescripcion" *ngIf="master.dseEstadoContratoDescripcion.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseCtrTagCausaExclusion" *ngIf="master.dseCtrTagCausaExclusion.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseDrvTarifa" *ngIf="master.dseDrvTarifa.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseDrvConvenio" *ngIf="master.dseDrvConvenio.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseDrvGrupoAsociado" *ngIf="master.dseDrvGrupoAsociado.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseDrvPeriodicidad" *ngIf="master.dseDrvPeriodicidad.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseNovedadDrvTextoMostrar" *ngIf="master.dseNovedadDrvTextoMostrar.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseCausalDrvTextoMostrar" *ngIf="master.dseCausalDrvTextoMostrar.visible"></imes-input-string>
+                        <imes-input-string [field]="master.dseDrvNuevaPeriodicidad" *ngIf="master.dseDrvNuevaPeriodicidad.visible"></imes-input-string>
+                        <imes-input-numeric [field]="master.dseSCNumMeses" *ngIf="master.dseSCNumMeses.visible"></imes-input-numeric>
+                        <imes-input-blob-image [field]="master.dseFirmaImagenFirma" *ngIf="master.dseFirmaImagenFirma.visible"></imes-input-blob-image>
+                    </div>
+                </div>
+                <div *ngIf="master.showInstanceLog" class="iiuLogNavigation">
+                    <a (click)="master.onNavigateLoginstance()">{{master.langMng.translateText('app_INSTANCELOG', 'Log Instance')}}</a>
+                </div>
+            </div>
+        </div>
+        <fieldset class="col-12 details"  [ngClass]="cssClasses" [disabled]="!enableDetails" *ngIf="d0Visible || d1Visible">
+            <legend *ngIf="false">Details legend</legend>
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" *ngIf="d0Visible">
+                    <a (click)="setActiveDetail(0)" class="nav-link"
+                            [ngClass]="{'active': activeDetail == 0}" role="tab" tabindex
+                            data-bs-toggle="tab">{{d0.title}}</a>
+                </li>
+                <li class="nav-item" *ngIf="d1Visible">
+                    <a (click)="setActiveDetail(1)" class="nav-link"
+                            [ngClass]="{'active': activeDetail == 1}" role="tab" tabindex
+                            data-bs-toggle="tab">{{d1.title}}</a>
+                </li>
+            </ul>
+            <div class="tab-content detailsContent">
+                <div class="tab-pane" [ngClass]=" {'active': activeDetail == 0}" *ngIf="d0Visible" role="tabpanel">
+                        <h3 class="title">{{d0.title}}</h3>
+                        <div class="iiuRegion" [ngClass]="d0.cssClasses">
+                            <imes-actionsnavigations [queryIU]="d0"></imes-actionsnavigations>
+                            <!-- Display Set elements -->
+                            <div class="card displaySet">
+                                <div class="card-header">{{d0.title}}</div>
+                                <div class="card-body">
+                                    <imes-input-string [field]="d0.dseContraDrvIdentificacion" *ngIf="d0.dseContraDrvIdentificacion.visible"></imes-input-string>
+                                    <imes-input-string [field]="d0.dseContraDrvNombreCompleto" *ngIf="d0.dseContraDrvNombreCompleto.visible"></imes-input-string>
+                                    <imes-input-string [field]="d0.dseContraNuevaRazonSocial" *ngIf="d0.dseContraNuevaRazonSocial.visible"></imes-input-string>
+                                </div>
+                            </div>
+                            <div *ngIf="d0.showInstanceLog" class="iiuLogNavigation">
+                                <a (click)="d0.onNavigateLoginstance()">{{d0.langMng.translateText('app_INSTANCELOG', 'Log Instance')}}</a>
+                            </div>
+                        </div>
+                </div>
+                <div class="tab-pane" [ngClass]=" {'active': activeDetail == 1}" *ngIf="d1Visible" role="tabpanel">
+                        <h3 class="title">{{d1.title}}</h3>
+                        <div class="iiuRegion" [ngClass]="d1.cssClasses">
+                            <imes-actionsnavigations [queryIU]="d1"></imes-actionsnavigations>
+                            <!-- Display Set elements -->
+                            <div class="card displaySet">
+                                <div class="card-header">{{d1.title}}</div>
+                                <div class="card-body">
+                                    <imes-input-string [field]="d1.dseObservacions" *ngIf="d1.dseObservacions.visible"></imes-input-string>
+                                </div>
+                            </div>
+                            <div *ngIf="d1.showInstanceLog" class="iiuLogNavigation">
+                                <a (click)="d1.onNavigateLoginstance()">{{d1.langMng.translateText('app_INSTANCELOG', 'Log Instance')}}</a>
+                            </div>
+                            <div class="card associatedService" *ngIf="d1.asrv && d1.asrv.userIsAgent">
+                                <div class="card-header">{{d1.asrv.title}}</div>
+                                <div class="card-body">
+                                    <div class="siuRegion" [ngClass]="d1.asrv.cssClasses">
+                                        <imes-input-string [field]="d1.asrv.puObservaciones" *ngIf="d1.asrv.puObservaciones.visible"></imes-input-string>
+                                        <imes-lense [field]="d1.asrv.puthisSolicitudNovedad" *ngIf="d1.asrv.puthisSolicitudNovedad.visible" (selected)="d1.asrv.onputhissolicitudnovedadChange()"
+                                            (cleared)="d1.asrv.cleanputhissolicitudnovedad()" (searched)="d1.asrv.doSearchAction('puthisSolicitudNovedad')"></imes-lense>
+                                    </div>
+                                    <div class="col-12 siuButtons">
+                                        <button type="button" class="btn btn-primary" (click)="d1.asrv.saveChanges()">{{langMng.translateText('app_SIU_BTNSAVE', '')}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </fieldset>
+        <div class="col-12 mdiuButtons">
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_CLOSE', '')}}</button>
+        </div>
+    </ng-container>
+</form>

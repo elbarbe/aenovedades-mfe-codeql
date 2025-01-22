@@ -1,0 +1,24 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-preload [field]="ptProducto" *ngIf="ptProducto.visible" (selected)="onptproductoChange()"></imes-preload>
+            <imes-preload [field]="ptupuagrPlan" *ngIf="ptupuagrPlan.visible" (selected)="onptupuagrplanChange()"></imes-preload>
+            <imes-input-string [field]="ptupuatrNumContrato" *ngIf="ptupuatrNumContrato.visible"></imes-input-string>
+            <imes-preload [field]="ptTipoNovedad" *ngIf="ptTipoNovedad.visible" (selected)="onpttiponovedadChange()"></imes-preload>
+            <imes-preload [field]="ptupuagrNovedad" *ngIf="ptupuagrNovedad.visible" (selected)="onptupuagrnovedadChange()"></imes-preload>
+            <imes-preload [field]="ptupuagrCausal" *ngIf="ptupuagrCausal.visible"></imes-preload>
+            <imes-input-date [field]="ptupuatrFechaVigencia" *ngIf="ptupuatrFechaVigencia.visible"></imes-input-date>
+            <imes-preload [field]="puagrMotivoExcepcion" *ngIf="puagrMotivoExcepcion.visible"></imes-preload>
+            <imes-input-date [field]="puatrFechaIniExcepcion" *ngIf="puatrFechaIniExcepcion.visible"></imes-input-date>
+            <imes-input-date [field]="puatrFechaFinExcepcion" *ngIf="puatrFechaFinExcepcion.visible"></imes-input-date>
+            <imes-lense [field]="ptupuagrProteccionDatos" *ngIf="ptupuagrProteccionDatos.visible" (selected)="onptupuagrprotecciondatosChange()"
+                (cleared)="cleanptupuagrprotecciondatos()" (searched)="doSearchAction('ptupuagrProteccionDatos')"></imes-lense>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

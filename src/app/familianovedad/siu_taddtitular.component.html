@@ -1,0 +1,50 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-preload [field]="ptUsuExistente" *ngIf="ptUsuExistente.visible" (selected)="onptusuexistenteChange()"></imes-preload>
+            <imes-preload [field]="ptupuagrTipoIdentificacion" *ngIf="ptupuagrTipoIdentificacion.visible" (selected)="onptupuagrtipoidentificacionChange()"></imes-preload>
+            <imes-input-string [field]="ptupuatrNumIdentificacion" *ngIf="ptupuatrNumIdentificacion.visible" (valueChanged)="onptupuatrnumidentificacionChange()"></imes-input-string>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('3')">
+                <div class="card-header">{{getGroupAlias('3')}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="ptRazonSocial" *ngIf="ptRazonSocial.visible"></imes-input-string>
+                </div>
+            </div>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('4')">
+                <div class="card-header">{{getGroupAlias('4')}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="ptupuatrPrimerNombre" *ngIf="ptupuatrPrimerNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrSegundoNombre" *ngIf="ptupuatrSegundoNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrPrimerApellido" *ngIf="ptupuatrPrimerApellido.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrSegundoApellido" *ngIf="ptupuatrSegundoApellido.visible"></imes-input-string>
+                    <imes-input-date [field]="ptupuatrFechaNacimiento" *ngIf="ptupuatrFechaNacimiento.visible"></imes-input-date>
+                    <imes-input-radio [field]="ptupuatrIndicadorExtranjero" *ngIf="ptupuatrIndicadorExtranjero.visible" (valueChanged)="onptupuatrindicadorextranjeroChange()"></imes-input-radio>
+                    <imes-preload [field]="ptupuagrDepartamentoNacimiento" *ngIf="ptupuagrDepartamentoNacimiento.visible" (selected)="onptupuagrdepartamentonacimientoChange()"></imes-preload>
+                    <imes-preload [field]="ptupuagrMunicipioNacimiento" *ngIf="ptupuagrMunicipioNacimiento.visible"></imes-preload>
+                    <imes-input-definedselection [field]="ptupuatrGenero" *ngIf="ptupuatrGenero.visible"></imes-input-definedselection>
+                </div>
+            </div>
+            <imes-input-string [field]="ptupuatrCorreoElectronico" *ngIf="ptupuatrCorreoElectronico.visible"></imes-input-string>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('6')">
+                <div class="card-header">{{getGroupAlias('6')}}</div>
+                <div class="card-body">
+                    <imes-input-string [field]="ptupuatrDireccionCompleta" *ngIf="ptupuatrDireccionCompleta.visible"></imes-input-string>
+                    <imes-preload [field]="ptupuagrDepartamento" *ngIf="ptupuagrDepartamento.visible" (selected)="onptupuagrdepartamentoChange()"></imes-preload>
+                    <imes-preload [field]="ptupuagrMunicipio" *ngIf="ptupuagrMunicipio.visible"></imes-preload>
+                    <imes-input-radio [field]="ptupuatrRural" *ngIf="ptupuatrRural.visible"></imes-input-radio>
+                    <imes-input-string [field]="ptupuatrTelefonoFijo" *ngIf="ptupuatrTelefonoFijo.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrTelefonoCelular" *ngIf="ptupuatrTelefonoCelular.visible"></imes-input-string>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

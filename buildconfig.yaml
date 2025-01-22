@@ -1,0 +1,27 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: aenovedades-mfe
+  labels:
+    app: aenovedades-mfe
+    app.kubernetes.io/component: aenovedades-mfe
+    app.kubernetes.io/instance: aenovedades-mfe
+    app.kubernetes.io/name: aenovedades-mfe
+    app.kubernetes.io/part-of: ae-app-frontend
+    app.openshift.io/runtime: aenovedades-mfe
+spec:
+  source:
+    type: Git
+    git:
+#INIGIT
+      uri: "git@github.com:IntegranovaSoporteColSanitas/aenovedades-mfe.git"
+      ref: "5.0.0"
+    sourceSecret:
+      name: ae-git-credentials
+#FINGIT
+  strategy:
+    type: Docker
+  output:
+    to:
+      kind: ImageStreamTag
+      name: aenovedades-mfe:latest

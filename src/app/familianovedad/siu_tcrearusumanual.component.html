@@ -1,0 +1,23 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lense [field]="puthisFamiliaNovedad" *ngIf="puthisFamiliaNovedad.visible" (selected)="onputhisfamilianovedadChange()"
+                (cleared)="cleanputhisfamilianovedad()" (searched)="doSearchAction('puthisFamiliaNovedad')"></imes-lense>
+            <imes-preload [field]="ptupuagrTipoIdentificacion" *ngIf="ptupuagrTipoIdentificacion.visible"></imes-preload>
+            <imes-input-string [field]="ptupuatrNumIdentificacion" *ngIf="ptupuatrNumIdentificacion.visible"></imes-input-string>
+            <imes-input-string [field]="ptupuatrPrimerNombre" *ngIf="ptupuatrPrimerNombre.visible"></imes-input-string>
+            <imes-input-string [field]="ptupuatrSegundoNombre" *ngIf="ptupuatrSegundoNombre.visible"></imes-input-string>
+            <imes-input-string [field]="ptupuatrPrimerApellido" *ngIf="ptupuatrPrimerApellido.visible"></imes-input-string>
+            <imes-input-string [field]="ptupuatrSegundoApellido" *ngIf="ptupuatrSegundoApellido.visible"></imes-input-string>
+            <imes-preload [field]="ptupuagrParentesco" *ngIf="ptupuagrParentesco.visible"></imes-preload>
+            <imes-input-definedselection [field]="ptupuatrGenero" *ngIf="ptupuatrGenero.visible"></imes-input-definedselection>
+            <imes-input-date [field]="ptupuatrFechaNacimiento" *ngIf="ptupuatrFechaNacimiento.visible"></imes-input-date>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

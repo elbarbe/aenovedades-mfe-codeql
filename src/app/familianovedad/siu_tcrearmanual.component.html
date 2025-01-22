@@ -1,0 +1,27 @@
+﻿<waitDialog [showWait]="showWait"></waitDialog> 
+<form novalidate>
+    <ng-container *ngIf="visible">
+        <h2 class="title">{{title}}</h2>
+        <div class="siuRegion" [ngClass]="cssClasses">
+            <imes-lense [field]="ptupuagrSolicitud" *ngIf="ptupuagrSolicitud.visible" (selected)="onptupuagrsolicitudChange()"
+                (cleared)="cleanptupuagrsolicitud()" (searched)="doSearchAction('ptupuagrSolicitud')"></imes-lense>
+            <imes-input-numeric [field]="ptupuatrNumFamilia" *ngIf="ptupuatrNumFamilia.visible"></imes-input-numeric>
+            <div class="card argumentGroup" *ngIf="isGroupVisible('2')">
+                <div class="card-header">{{getGroupAlias('2')}}</div>
+                <div class="card-body">
+                    <imes-preload [field]="ptupuagrTipoIdentificacion" *ngIf="ptupuagrTipoIdentificacion.visible" (selected)="onptupuagrtipoidentificacionChange()"></imes-preload>
+                    <imes-input-string [field]="ptupuatrTitNumidentificacion" *ngIf="ptupuatrTitNumidentificacion.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrTitPrimerNombre" *ngIf="ptupuatrTitPrimerNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrTitSegundoNombre" *ngIf="ptupuatrTitSegundoNombre.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrTitPrimerApellido" *ngIf="ptupuatrTitPrimerApellido.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrTitSegundoApellido" *ngIf="ptupuatrTitSegundoApellido.visible"></imes-input-string>
+                    <imes-input-string [field]="ptupuatrTitRazonSocial" *ngIf="ptupuatrTitRazonSocial.visible"></imes-input-string>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 siuButtons">
+            <button type="button" class="btnOk btn btn-primary" (click)="saveChanges()">{{langMng.translateText('app_SIU_BTNOK', '')}}</button>
+            <button type="button" class="btnCancel btn btn-danger" (click)="processCancel()">{{langMng.translateText('app_SIU_BTNCANCEL', '')}}</button>
+        </div>
+    </ng-container>
+</form>

@@ -1,0 +1,48 @@
+/* Específico de aenovedades */
+
+/* MDs  */
+/* Reginon de instancia a 2 columnas */
+imes-solicitudnovedad-mdiu-solnovtipotitular .iiuRegion .card.displaySet .card-body,
+imes-solicitudnovedad-mdiu-solnovtipocontrato .iiuRegion .card.displaySet .card-body,
+imes-solicitudnovedad-mdiu-solnovtipousuario  .iiuRegion .card.displaySet .card-body{
+    width: 1090px !important;
+}
+/* Ajustamos ancho de accioens y navegaciones */
+imes-solicitudnovedad-mdiu-solnovtipotitular .iiuRegion .actionsNavigations .action, 
+imes-solicitudnovedad-mdiu-solnovtipotitular .iiuRegion .actionsNavigations .navigation,
+imes-solicitudnovedad-mdiu-solnovtipocontrato .iiuRegion .actionsNavigations .action, 
+imes-solicitudnovedad-mdiu-solnovtipocontrato .iiuRegion .actionsNavigations .navigation,
+imes-solicitudnovedad-mdiu-solnovtipousuario .iiuRegion .actionsNavigations .action, 
+imes-solicitudnovedad-mdiu-solnovtipousuario .iiuRegion .actionsNavigations .navigation {
+    width: auto !important;
+}
+imes-solicitudnovedad-mdiu-solnovtipotitular .iiuRegion .actionsNavigations button,
+imes-solicitudnovedad-mdiu-solnovtipocontrato .iiuRegion .actionsNavigations button,
+imes-solicitudnovedad-mdiu-solnovtipousuario .iiuRegion .actionsNavigations button {
+    width: auto !important;
+}
+/* Ocultamos displayset del ultimo detalle */
+imes-solicitudnovedad-mdiu-solnovtipotitular .detailsContent .tab-pane:last-of-type .displaySet,
+imes-solicitudnovedad-mdiu-solnovtipocontrato .detailsContent .tab-pane:last-of-type .displaySet,
+imes-solicitudnovedad-mdiu-solnovtipousuario .detailsContent .tab-pane:last-of-type .displaySet {
+    display: none;
+}
+
+imes-solicitudnovedad-mdiu-solnovtipotitular .imesBlobImage,
+imes-solicitudnovedad-mdiu-solnovtipocontrato .imesBlobImage,
+imes-solicitudnovedad-mdiu-solnovtipousuario .imesBlobImage {
+    width: 150px !important;
+    position: absolute;
+    left: 1065px;
+}
+
+/* Ocultar alias del texto de la firma */
+imes-solicitudnovedad-siu-tfirmar .aliasField,
+imes-familianovedad-siu-tfirmartitular .aliasField,
+imes-familianovedad-siu-tfirmarnuevotitular .aliasField {
+    display: none;
+}
+
+imes-protecciondatos-siu-tcrearsolnovedad .aliasField {
+    display: none;
+}
