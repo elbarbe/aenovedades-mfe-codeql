@@ -366,24 +366,24 @@ export class UsuarioNovedadSIUuTMODIFICARMANUALComponent extends AbstractService
         const varputhisusuarionovedad = this.getFirstInstanceFromCache(this.puthisUsuarioNovedad);
         // v <> NULL
         if (varputhisusuarionovedad && !this.util.isNull(varputhisusuarionovedad)) {
-            // pt_p_NumIdentificacion.SetValue( v.NumIdentificacion )
+            // pt_p_NumIdentificacion.SetValue( v.numidentificacion )
             this.ptupuNumIdentificacion.setValue(varputhisusuarionovedad.get('numidentificacion'));
-            // pt_p_PrimerNombre.SetValue( v.PrimerNombre )
+            // pt_p_PrimerNombre.SetValue( v.primernombre )
             this.ptupuPrimerNombre.setValue(varputhisusuarionovedad.get('primernombre'));
-            // pt_p_SegundoNombre.SetValue( v.SegundoNombre )
+            // pt_p_SegundoNombre.SetValue( v.segundonombre )
             this.ptupuSegundoNombre.setValue(varputhisusuarionovedad.get('segundonombre'));
-            // pt_p_PrimerApellido.SetValue( v.PrimerApellido )
+            // pt_p_PrimerApellido.SetValue( v.primerapellido )
             this.ptupuPrimerApellido.setValue(varputhisusuarionovedad.get('primerapellido'));
-            // pt_p_SegundoApellido.SetValue( v.SegundoApellido )
+            // pt_p_SegundoApellido.SetValue( v.segundoapellido )
             this.ptupuSegundoApellido.setValue(varputhisusuarionovedad.get('segundoapellido'));
-            // pt_p_Genero.SetValue( v.Genero )
+            // pt_p_Genero.SetValue( v.genero )
             this.ptupuGenero.setValue(varputhisusuarionovedad.get('genero'));
-            // pt_p_FechaNacimiento.SetValue( v.FechaNacimiento )
+            // pt_p_FechaNacimiento.SetValue( v.fechanacimiento )
             this.ptupuFechaNacimiento.setValue(this.util.getDate(varputhisusuarionovedad.get('fechanacimiento')));
-            // ptTipoIdentificacion.SetValue( v.TipoIdentificacion )
+            // ptTipoIdentificacion.SetValue( v.tipoidentificacion )
             this.ptTipoIdentificacion.setValue(this.util.oidBuilder.buildOidTipoIdentificacion(
                 this.util.getInt(varputhisusuarionovedad.get('tipoidentificacion.Codigo'))));
-            // ptParentesco.SetValue( v.Parentesco )
+            // ptParentesco.SetValue( v.parentesco )
             this.ptParentesco.setValue(this.util.oidBuilder.buildOidParentesco(
                 this.util.getInt(varputhisusuarionovedad.get('parentesco.Codigo'))));
         }

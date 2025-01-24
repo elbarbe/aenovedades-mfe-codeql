@@ -496,7 +496,7 @@ export class DocumentoNovedadSIUuTCREARATOComponent extends AbstractServiceIU im
         const varptusuario = this.getFirstInstanceFromCache(this.ptUsuario);
         // v <> NULL
         if (varptusuario && !this.util.isNull(varptusuario)) {
-            // ptNumIdentUsuario.SetValue( v.TipoIdentificacion.NombreCorto + v.NumIdentificacion )
+            // ptNumIdentUsuario.SetValue( v.tipoidentificacion.nombrecorto + v.numidentificacion )
             this.ptNumIdentUsuario.setValue(varptusuario.get('tipoidentificacion.nombrecorto') + varptusuario.get('numidentificacion'));
             this.executeDependecyRulesptnumidentusuario('SetValue', true);
         }
@@ -530,7 +530,7 @@ export class DocumentoNovedadSIUuTCREARATOComponent extends AbstractServiceIU im
      */
     private executeDependecyRules2ptUsuarioActions(): void {
         const varptusuario = this.getFirstInstanceFromCache(this.ptUsuario);
-        // v =  NULL
+        // v = NULL
         if (varptusuario && this.util.isNull(varptusuario)) {
             // ptNumIdentUsuario.SetValue( NULL )
             this.ptNumIdentUsuario.setValue(null);

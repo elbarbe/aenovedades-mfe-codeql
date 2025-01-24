@@ -873,6 +873,12 @@ export class Configuration {
             ]
         }
         , {
+            className: ModelConstants.Textoaviso.name,
+            navKey: 'textoaviso',
+            ius: [
+            ]
+        }
+        , {
             className: 'globalservices',
             navKey: 'globalservices',
             ius: [

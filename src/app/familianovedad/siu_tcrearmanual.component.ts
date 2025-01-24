@@ -403,7 +403,7 @@ export class FamiliaNovedadSIUuTCREARMANUALComponent extends AbstractServiceIU i
      */
     private executeDependecyRules1ptupuagrTipoIdentificacionActions(): void {
         const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
-        // v <> NULL AND v.NIT = TRUE
+        // v <> NULL AND v.nit = true
         if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), true)) {
             // pt_p_atrTitPrimerApellido.SetValue( NULL )
@@ -455,7 +455,7 @@ export class FamiliaNovedadSIUuTCREARMANUALComponent extends AbstractServiceIU i
      */
     private executeDependecyRules2ptupuagrTipoIdentificacionActions(): void {
         const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
-        // v <> NULL AND v.NIT = FALSE
+        // v <> NULL AND v.nit = false
         if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), false)) {
             // pt_p_atrTitPrimerApellido.SetActive( TRUE )

@@ -11,7 +11,6 @@ metadata:
     app.openshift.io/runtime: aenovedades-mfe
 spec:
 #INIHOST
-#  host: aenovedades-mfe-soporte-colsanitas-dev.apps.sandbox-m3.1530.p1.openshiftapps.com
   host: aenovedades-mfe-soporte-colsanitas-dev.apps.rm3.7wse.p1.openshiftapps.com
 #FINHOST
   to:

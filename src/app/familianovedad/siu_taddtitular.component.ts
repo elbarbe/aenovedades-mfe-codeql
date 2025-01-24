@@ -889,63 +889,63 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
      */
     private executeDependecyRules1puthisFamiliaNovedadActions(): void {
         const varputhisfamilianovedad = this.getFirstInstanceFromCache(this.puthisFamiliaNovedad);
-        // v <> NULL AND p_thisFamiliaNovedad.NovedadCT <> NULL
+        // v <> NULL AND p_thisfamilianovedad.novedadct <> NULL
         if (varputhisfamilianovedad && !this.util.isNull(varputhisfamilianovedad) &&
             !this.util.isNull(this.util.oidBuilder.buildOidNovedadCT(
             this.util.getInt(varputhisfamilianovedad.get('novedadct.id_NovedadCT'))))) {
-            // pt_p_agrDepartamento.SetValue( v.NovedadCT.DepartamentoRes )
+            // pt_p_agrDepartamento.SetValue( v.novedadct.departamentores )
             this.ptupuagrDepartamento.setValue(this.util.oidBuilder.buildOidDepartamento(
                 this.util.getInt(varputhisfamilianovedad.get('novedadct.departamentores.Codigo'))));
             this.pendingDependencyRules.push('loadPreloadptupuagrmunicipio');
-            // pt_p_agrDepartamentoNacimiento.SetValue( v.NovedadCT.DepartamentoNac )
+            // pt_p_agrDepartamentoNacimiento.SetValue( v.novedadct.departamentonac )
             this.ptupuagrDepartamentoNacimiento.setValue(this.util.oidBuilder.buildOidDepartamento(
                 this.util.getInt(varputhisfamilianovedad.get('novedadct.departamentonac.Codigo'))));
             this.pendingDependencyRules.push('loadPreloadptupuagrmunicipionacimiento');
-            // pt_p_agrMunicipio.SetValue( v.NovedadCT.MunicipioRes )
+            // pt_p_agrMunicipio.SetValue( v.novedadct.municipiores )
             this.ptupuagrMunicipio.setValue(this.util.oidBuilder.buildOidMunicipio(
                 this.util.getInt(varputhisfamilianovedad.get('novedadct.municipiores.Codigo'))));
-            // pt_p_agrMunicipioNacimiento.SetValue( v.NovedadCT.MunicipioNac )
+            // pt_p_agrMunicipioNacimiento.SetValue( v.novedadct.municipionac )
             this.ptupuagrMunicipioNacimiento.setValue(this.util.oidBuilder.buildOidMunicipio(
                 this.util.getInt(varputhisfamilianovedad.get('novedadct.municipionac.Codigo'))));
-            // pt_p_agrPais.SetValue( v.NovedadCT.Pais )
+            // pt_p_agrPais.SetValue( v.novedadct.pais )
             this.ptupuagrPais.setValue(this.util.oidBuilder.buildOidPais(
                 varputhisfamilianovedad.get('novedadct.pais.Codigo')));
             this.executeDependecyRulesptupuagrpais('SetValue', true);
-            // pt_p_agrTipoIdentificacion.SetValue( v.NovedadCT.TipoIdentificacion )
+            // pt_p_agrTipoIdentificacion.SetValue( v.novedadct.tipoidentificacion )
             this.ptupuagrTipoIdentificacion.setValue(this.util.oidBuilder.buildOidTipoIdentificacion(
                 this.util.getInt(varputhisfamilianovedad.get('novedadct.tipoidentificacion.Codigo'))));
             this.executeDependecyRulesptupuagrtipoidentificacion('SetValue', true);
-            // pt_p_atrCorreoElectronico.SetValue( v.NovedadCT.CorreoElectronico )
+            // pt_p_atrCorreoElectronico.SetValue( v.novedadct.correoelectronico )
             this.ptupuatrCorreoElectronico.setValue(varputhisfamilianovedad.get('novedadct.correoelectronico'));
-            // pt_p_atrDireccionCompleta.SetValue( v.NovedadCT.DireccionCompleta )
+            // pt_p_atrDireccionCompleta.SetValue( v.novedadct.direccioncompleta )
             this.ptupuatrDireccionCompleta.setValue(varputhisfamilianovedad.get('novedadct.direccioncompleta'));
-            // pt_p_atrFechaNacimiento.SetValue( v.NovedadCT.FechaNacimiento )
+            // pt_p_atrFechaNacimiento.SetValue( v.novedadct.fechanacimiento )
             this.ptupuatrFechaNacimiento.setValue(this.util.getDate(varputhisfamilianovedad.get('novedadct.fechanacimiento')));
-            // pt_p_atrGenero.SetValue( v.NovedadCT.Genero )
+            // pt_p_atrGenero.SetValue( v.novedadct.genero )
             this.ptupuatrGenero.setValue(varputhisfamilianovedad.get('novedadct.genero'));
-            // pt_p_atrIndicadorExtranjero.SetValue( v.NovedadCT.IndicadorExtranjero )
+            // pt_p_atrIndicadorExtranjero.SetValue( v.novedadct.indicadorextranjero )
             this.ptupuatrIndicadorExtranjero.setValue(this.util.getBool(varputhisfamilianovedad.get('novedadct.indicadorextranjero')));
             this.executeDependecyRulesptupuatrindicadorextranjero('SetValue', true);
-            // pt_p_atrNumIdentificacion.SetValue( v.NovedadCT.TitNumidentificacion )
+            // pt_p_atrNumIdentificacion.SetValue( v.novedadct.titnumidentificacion )
             this.ptupuatrNumIdentificacion.setValue(varputhisfamilianovedad.get('novedadct.titnumidentificacion'));
             this.executeDependecyRulesptupuatrnumidentificacion('SetValue', true);
-            // pt_p_atrPrimerApellido.SetValue( v.NovedadCT.TitPrimerApellido )
+            // pt_p_atrPrimerApellido.SetValue( v.novedadct.titprimerapellido )
             this.ptupuatrPrimerApellido.setValue(varputhisfamilianovedad.get('novedadct.titprimerapellido'));
-            // pt_p_atrPrimerNombre.SetValue( v.NovedadCT.TitPrimerNombre )
+            // pt_p_atrPrimerNombre.SetValue( v.novedadct.titprimernombre )
             this.ptupuatrPrimerNombre.setValue(varputhisfamilianovedad.get('novedadct.titprimernombre'));
-            // pt_p_atrRural.SetValue( v.NovedadCT.Rural )
+            // pt_p_atrRural.SetValue( v.novedadct.rural )
             this.ptupuatrRural.setValue(this.util.getBool(varputhisfamilianovedad.get('novedadct.rural')));
-            // pt_p_atrSegundoApellido.SetValue( v.NovedadCT.TitSegundoApellido )
+            // pt_p_atrSegundoApellido.SetValue( v.novedadct.titsegundoapellido )
             this.ptupuatrSegundoApellido.setValue(varputhisfamilianovedad.get('novedadct.titsegundoapellido'));
-            // pt_p_atrSegundoNombre.SetValue( v.NovedadCT.TitSegundoNombre )
+            // pt_p_atrSegundoNombre.SetValue( v.novedadct.titsegundonombre )
             this.ptupuatrSegundoNombre.setValue(varputhisfamilianovedad.get('novedadct.titsegundonombre'));
-            // pt_p_atrTelefonoCelular.SetValue( v.NovedadCT.TelefonoCelular )
+            // pt_p_atrTelefonoCelular.SetValue( v.novedadct.telefonocelular )
             this.ptupuatrTelefonoCelular.setValue(varputhisfamilianovedad.get('novedadct.telefonocelular'));
-            // pt_p_atrTelefonoFijo.SetValue( v.NovedadCT.TelefonoFijo )
+            // pt_p_atrTelefonoFijo.SetValue( v.novedadct.telefonofijo )
             this.ptupuatrTelefonoFijo.setValue(varputhisfamilianovedad.get('novedadct.telefonofijo'));
-            // pt_p_Codigo.SetValue( v.NovedadCT.CodigoCORE )
+            // pt_p_Codigo.SetValue( v.novedadct.codigocore )
             this.ptupuCodigo.setValue(this.util.getInt(varputhisfamilianovedad.get('novedadct.codigocore')));
-            // ptRazonSocial.SetValue( v.NovedadCT.TitRazonSocial )
+            // ptRazonSocial.SetValue( v.novedadct.titrazonsocial )
             this.ptRazonSocial.setValue(varputhisfamilianovedad.get('novedadct.titrazonsocial'));
         }
         this.executePendingDependencyRules();
@@ -1114,7 +1114,7 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
      */
     private executeDependecyRules1ptupuagrTipoIdentificacionActions(): void {
         const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
-        // v <> NULL AND v.NIT = TRUE
+        // v <> NULL AND v.nit = true
         if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), true)) {
             // pt_p_agrDepartamentoNacimiento.SetVisible( FALSE )
@@ -1208,7 +1208,7 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
      */
     private executeDependecyRules2ptupuagrTipoIdentificacionActions(): void {
         const varptupuagrtipoidentificacion = this.getFirstInstanceFromCache(this.ptupuagrTipoIdentificacion);
-        // v <> NULL AND v.NIT = FALSE
+        // v <> NULL AND v.nit = false
         if (varptupuagrtipoidentificacion && !this.util.isNull(varptupuagrtipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varptupuagrtipoidentificacion.get('nit')), false)) {
             // pt_p_agrDepartamentoNacimiento.SetVisible( TRUE )
@@ -1638,11 +1638,11 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
         const varptusuexistente = this.getFirstInstanceFromCache(this.ptUsuExistente);
         // v <> NULL
         if (varptusuexistente && !this.util.isNull(varptusuexistente)) {
-            // pt_p_agrTipoIdentificacion.SetValue( v.TipoIdentificacion )
+            // pt_p_agrTipoIdentificacion.SetValue( v.tipoidentificacion )
             this.ptupuagrTipoIdentificacion.setValue(this.util.oidBuilder.buildOidTipoIdentificacion(
                 this.util.getInt(varptusuexistente.get('tipoidentificacion.Codigo'))));
             this.executeDependecyRulesptupuagrtipoidentificacion('SetValue', true);
-            // pt_p_atrNumIdentificacion.SetValue( v.NumIdentificacion )
+            // pt_p_atrNumIdentificacion.SetValue( v.numidentificacion )
             this.ptupuatrNumIdentificacion.setValue(varptusuexistente.get('numidentificacion'));
             this.executeDependecyRulesptupuatrnumidentificacion('SetValue', true);
         }

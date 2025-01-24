@@ -330,19 +330,19 @@ export class FamiliaNovedadSIUuTMODIFICARMANUALComponent extends AbstractService
         if (varputhisfamilianovedad && !this.util.isNull(varputhisfamilianovedad)) {
             // p_thisFamiliaNovedad.SetVisible( FALSE )
             this.puthisFamiliaNovedad.visible = false;
-            // pt_p_NumFamilia.SetValue( v.NumFamilia )
+            // pt_p_NumFamilia.SetValue( v.numfamilia )
             this.ptupuNumFamilia.setValue(this.util.getInt(varputhisfamilianovedad.get('numfamilia')));
-            // pt_p_TitNumidentificacion.SetValue( v.TitNumidentificacion )
+            // pt_p_TitNumidentificacion.SetValue( v.titnumidentificacion )
             this.ptupuTitNumidentificacion.setValue(varputhisfamilianovedad.get('titnumidentificacion'));
-            // pt_p_TitPrimerNombre.SetValue( v.TitPrimerNombre )
+            // pt_p_TitPrimerNombre.SetValue( v.titprimernombre )
             this.ptupuTitPrimerNombre.setValue(varputhisfamilianovedad.get('titprimernombre'));
-            // pt_p_TitSegundoNombre.SetValue( v.TitSegundoNombre )
+            // pt_p_TitSegundoNombre.SetValue( v.titsegundonombre )
             this.ptupuTitSegundoNombre.setValue(varputhisfamilianovedad.get('titsegundonombre'));
-            // pt_p_TitPrimerApellido.SetValue( v.TitPrimerApellido )
+            // pt_p_TitPrimerApellido.SetValue( v.titprimerapellido )
             this.ptupuTitPrimerApellido.setValue(varputhisfamilianovedad.get('titprimerapellido'));
-            // pt_p_TitSegundoApellido.SetValue( v.TitSegundoApellido )
+            // pt_p_TitSegundoApellido.SetValue( v.titsegundoapellido )
             this.ptupuTitSegundoApellido.setValue(varputhisfamilianovedad.get('titsegundoapellido'));
-            // pt_p_TitRazonSocial.SetValue( v.TitRazonSocial )
+            // pt_p_TitRazonSocial.SetValue( v.titrazonsocial )
             this.ptupuTitRazonSocial.setValue(varputhisfamilianovedad.get('titrazonsocial'));
         }
         this.executePendingDependencyRules();
@@ -472,7 +472,7 @@ export class FamiliaNovedadSIUuTMODIFICARMANUALComponent extends AbstractService
      */
     private executeDependecyRules1ptTipoIdentificacionActions(): void {
         const varpttipoidentificacion = this.getFirstInstanceFromCache(this.ptTipoIdentificacion);
-        // v <> NULL AND v.NIT = TRUE
+        // v <> NULL AND v.nit = true
         if (varpttipoidentificacion && !this.util.isNull(varpttipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varpttipoidentificacion.get('nit')), true)) {
             // pt_p_TitPrimerApellido.SetValue( NULL )
@@ -524,7 +524,7 @@ export class FamiliaNovedadSIUuTMODIFICARMANUALComponent extends AbstractService
      */
     private executeDependecyRules2ptTipoIdentificacionActions(): void {
         const varpttipoidentificacion = this.getFirstInstanceFromCache(this.ptTipoIdentificacion);
-        // v <> NULL AND v.NIT = FALSE
+        // v <> NULL AND v.nit = false
         if (varpttipoidentificacion && !this.util.isNull(varpttipoidentificacion) &&
             this.util.valueEquals(this.util.getBool(varpttipoidentificacion.get('nit')), false)) {
             // pt_p_TitPrimerApellido.SetActive( TRUE )
