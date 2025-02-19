@@ -82,7 +82,6 @@ export class ModelConstants {
     public static readonly Marcamedicac = {name : 'MarcaMedicaC'};
     public static readonly Tiposucursalc = {name : 'TipoSucursalC'};
     public static readonly Conceptoc = {name : 'ConceptoC'};
-    public static readonly Anonimo = {name : 'Anonimo'};
     public static readonly Detalletarifa = {name : 'DetalleTarifa'};
     public static readonly Agentexproducto = {name : 'AgentexProducto'};
     public static readonly Institucionmatneo = {name : 'InstitucionMatNeo'};
@@ -150,6 +149,7 @@ export class ModelConstants {
     public static readonly Contratosexentosfingreso = {name : 'ContratosExentosFIngreso'};
     public static readonly Logcontratosexentosfingreso = {name : 'LogContratosExentosFIngreso'};
     public static readonly Textoaviso = {name : 'TextoAviso'};
+    public static readonly Usuariosistemaexterno = {name : 'UsuarioSistemaExterno'};
     public static readonly Globalservices = {name : 'GlobalServices', siuuogetreportsolnov: 'siu_ogetreportsolnov',
         siuuogetreportsolnovuout: 'siu_ogetreportsolnov_out'};
 }

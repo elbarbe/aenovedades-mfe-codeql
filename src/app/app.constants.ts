@@ -487,12 +487,6 @@ export class Configuration {
             ]
         }
         , {
-            className: ModelConstants.Anonimo.name,
-            navKey: 'anonimo',
-            ius: [
-            ]
-        }
-        , {
             className: ModelConstants.Detalletarifa.name,
             navKey: 'detalletarifa',
             ius: [
@@ -875,6 +869,12 @@ export class Configuration {
         , {
             className: ModelConstants.Textoaviso.name,
             navKey: 'textoaviso',
+            ius: [
+            ]
+        }
+        , {
+            className: ModelConstants.Usuariosistemaexterno.name,
+            navKey: 'usuariosistemaexterno',
             ius: [
             ]
         }
