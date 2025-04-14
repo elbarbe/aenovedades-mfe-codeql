@@ -84,7 +84,7 @@ export class FamiliaNovedadMDIUuFamNovuDuTipoTitularComponent extends AbstractMD
             this.d0.title = this.langMng.translateText(
                 'cls_FamiliaNovedad_mdiu_MDIU_FamNov_D_TipoTitular_detail_Clas_1581424574464890UIMaDet_1Det_1',
                 'Usuarios');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('UsuarioNovedad',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('UsuarioNovedad',
                 this.master.getContext(), null, 'FamiliaNovedad', null, 'FamiliaNovedad', ''));
         }
         super.initializeComponents();

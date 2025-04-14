@@ -63,7 +63,27 @@ export class BHServicesUtil {
         });
     }
 
+    public tieneEPSSanitas(tipoIdentificacion: string, numIdentificacion: string, numSolicitud: string): Promise<boolean> {
+        return new Promise<boolean>((resolve, reject) => {
+            this.consultarContratosDePersonaAux(tipoIdentificacion, numIdentificacion, numSolicitud).then( (response: any) => {
+                resolve(response.tieneEPSSanitas);
+            }).catch ((err: Error) => {
+                reject(err);
+            });
+        });
+    }
+
     public consultarContratosDePersona(tipoIdentificacion: string, numIdentificacion: string, numSolicitud: string): Promise<any> {
+        return new Promise<any>((resolve, reject) => {
+            this.consultarContratosDePersonaAux(tipoIdentificacion, numIdentificacion, numSolicitud).then( (response: any) => {
+                resolve(response.coverResponse);
+            }).catch ((err: Error) => {
+                reject(err);
+            });
+        });
+    }
+
+    private consultarContratosDePersonaAux(tipoIdentificacion: string, numIdentificacion: string, numSolicitud: string): Promise<any> {
         const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + '/api/bhcall/consultarContratoDePersona';
 
         let headers = new HttpHeaders();
@@ -84,7 +104,7 @@ export class BHServicesUtil {
                 {
                     next: (res: any) => {
                         if (res.body && res.body.exito) {
-                            resolve(res.body.coverResponse);
+                            resolve(res.body);
                         } else {
                             const errorInfo = new ErrorInformation(false, '', res.body.textoError, '', []);
                             reject(errorInfo);
@@ -399,11 +419,13 @@ export class BHServicesUtil {
      * @returns 
      */
     public static getValorElementoPor2Claves(array: any[], clave: string, valorClave: string, clave2: string, valorClave2: string, campo: string): any {
-        const elemento = array.find( (el: any) => el[clave] && el[clave].includes(valorClave) &&
-                                                  el[clave2] && el[clave2].includes(valorClave2) &&
-                                                  el[campo]);
-        if (elemento && elemento[campo]) {
-            return elemento[campo];
+        if (array && clave && clave2 && campo) {
+            const elemento = array.find( (el: any) => el[clave] && el[clave].includes(valorClave) &&
+                                                    el[clave2] && el[clave2].includes(valorClave2) &&
+                                                    el[campo]);
+            if (elemento && elemento[campo]) {
+                return elemento[campo];
+            }
         }
         return undefined;
     }
@@ -417,7 +439,7 @@ export class BHServicesUtil {
      * @returns 
      */
     public static getValorElementoPorClave(array: any[], clave: string, valorClave: string, campo: string): any {
-        if (array) {
+        if (array && clave && campo) {
             const elemento = array.find( (el: any) => el[clave] && el[clave].includes(valorClave) && el[campo]);
             return elemento ? elemento[campo] : undefined;
         }
@@ -432,7 +454,7 @@ export class BHServicesUtil {
      * @returns 
      */
     public static getElemento(array: any[], clave: string, valorClave: string): any {
-        if (array) {
+        if (array && clave) {
             return array.find( (el: any) => el[clave] && el[clave].includes(valorClave));
         }
         return undefined;

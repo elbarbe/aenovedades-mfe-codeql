@@ -184,8 +184,11 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
         this.ptupuatrFechaNacimiento.value = this.util.getDate(datosPersona?.basicData?.birthDate);
         this.ptupuatrGenero.value = datosPersona?.basicData?.gender;
 
-        // PTE 
-        this.ptupuatrIndicadorExtranjero.value = false;
+        if (datosPersona?.basicData?.foreign) {
+            this.ptupuatrIndicadorExtranjero.value = true;
+        } else {
+            this.ptupuatrIndicadorExtranjero.value = false;
+        }
 
         this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
                 'system', 'TELEFONO_CONTACTO_PRINCIPAL', 
@@ -228,7 +231,6 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
         const direccionResidencia = BHServicesUtil.getElemento(datosPersona?.contact?.address, 'use', 'RESIDENCIAL');
         if (direccionResidencia) {
             this.ptupuatrDireccionCompleta.value = direccionResidencia.text;
-            // PTE
             this.ptupuatrRural.value = false;
             // Tenemos los codigos legales de departamento y municipio
             const codLegalDep = direccionResidencia?.state?.code;

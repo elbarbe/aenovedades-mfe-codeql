@@ -97,7 +97,7 @@ export class SolicitudNovedadMDIUuSolNovTipoContratoComponent extends AbstractMD
             this.d0.title = this.langMng.translateText(
                 'cls_SolicitudNovedad_mdiu_MDIU_SolNovTipoContrato_detail_Clas_1581421428736234UIMaDet_1Det_1',
                 'Contratante');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
                 this.master.getContext(), null, '', null, 'SolicitudNovedad', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -107,7 +107,7 @@ export class SolicitudNovedadMDIUuSolNovTipoContratoComponent extends AbstractMD
             this.d1.title = this.langMng.translateText(
                 'cls_SolicitudNovedad_mdiu_MDIU_SolNovTipoContrato_detail_Clas_1581421428736234UIMaDet_1Det_2',
                 'Observaciones');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
                 this.master.getContext(), null, '', null, 'SolicitudNovedad', ''));
         }
         super.initializeComponents();

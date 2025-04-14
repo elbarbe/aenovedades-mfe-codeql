@@ -110,7 +110,7 @@ export class SolicitudNovedadMDIUuSolNovTipoUsuarioComponent extends AbstractMDI
             this.d0.title = this.langMng.translateText(
                 'cls_SolicitudNovedad_mdiu_MDIU_SolNovTipoUsuario_detail_Clas_1581421428736234UIMaDet_3Det_2',
                 'Familias');
-            this.d0.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('FamiliaNovedad',
+            this.d0.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('FamiliaNovedad',
                 this.master.getContext(), null, 'Solicitud', null, 'SolicitudNovedad', ''));
         }
         if (this.d1Visible && this.d1 != null) {
@@ -120,7 +120,7 @@ export class SolicitudNovedadMDIUuSolNovTipoUsuarioComponent extends AbstractMDI
             this.d1.title = this.langMng.translateText(
                 'cls_SolicitudNovedad_mdiu_MDIU_SolNovTipoUsuario_detail_Clas_1581421428736234UIMaDet_3Det_4',
                 'Contratante');
-            this.d1.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
+            this.d1.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
                 this.master.getContext(), null, '', null, 'SolicitudNovedad', ''));
         }
         if (this.d2Visible && this.d2 != null) {
@@ -130,7 +130,7 @@ export class SolicitudNovedadMDIUuSolNovTipoUsuarioComponent extends AbstractMDI
             this.d2.title = this.langMng.translateText(
                 'cls_SolicitudNovedad_mdiu_MDIU_SolNovTipoUsuario_detail_Clas_1581421428736234UIMaDet_3Det_3',
                 'Observaciones');
-            this.d2.setExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
+            this.d2.initializeFromExchangeInfo(this.util.createExchangeInfoNavigationFromMasterToDetail('SolicitudNovedad',
                 this.master.getContext(), null, '', null, 'SolicitudNovedad', ''));
         }
         super.initializeComponents();

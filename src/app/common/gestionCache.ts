@@ -36,7 +36,11 @@ export class GestionCache {
                     }
                     // Lo guardamos en la sessionstorage
                     sessionStorage.setItem('cacheTI', JSON.stringify(lista));
-                    return this.getCodigoLegalTipoIdentificacionAux(oidTipoIdent);
+                    this.getCodigoLegalTipoIdentificacionAux(oidTipoIdent).then ((value: string) => {
+                        resolve(value);
+                    }).catch( (err: Error) => {
+                        reject(err);
+                    });
                 }).catch((err: Error) => {
                     reject(err);
                 })
@@ -44,7 +48,7 @@ export class GestionCache {
         }
     }
 
-    public getCodigoLegalTipoIdentificacionAux(oidTipoIdent: string): Promise<string> {
+    private getCodigoLegalTipoIdentificacionAux(oidTipoIdent: string): Promise<string> {
 
         // Ya debemos tener los datos en la sessionStorage
         const tiposIdentString = sessionStorage.getItem('cacheTI');
