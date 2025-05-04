@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { CacheDependencyRules, InstanceCache } from '../common/app.cachedependencyrules';
 import { Field, FieldOVLense } from '../common/baseIUElements';
@@ -11,6 +11,9 @@ import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements global SIU SIU_OGETREPORTSOLNOV »
+ */
 @Component({
     selector: 'imes-gs-siu-ogetreportsolnov',
     templateUrl: './siu_ogetreportsolnov.component.html',

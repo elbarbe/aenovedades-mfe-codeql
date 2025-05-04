@@ -1,4 +1,4 @@
-﻿import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { ModelConstants } from '../common/model.constants';
@@ -9,6 +9,9 @@ import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements IIU IIU_SolNovContra_TipoTitular of SolicitudNovedad »
+ */
 export class SolicitudNovedadIIUuSolNovContrauTipoTitularComponent extends AbstractIIU {
 
     /** Display Set elements */

@@ -1,4 +1,4 @@
-﻿import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { ModelConstants } from '../common/model.constants';
@@ -10,6 +10,9 @@ import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { SolicitudNovedadSIUuregistrarObservacionesComponent } from './siu_registrarobservaciones.component';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements IIU IIU_SolNovObservaciones of SolicitudNovedad »
+ */
 export class SolicitudNovedadIIUuSolNovObservacionesComponent extends AbstractIIU {
 
     /** Display Set elements */

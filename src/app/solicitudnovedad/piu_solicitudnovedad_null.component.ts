@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { DisplaySetItem } from '../common/queryIUElements';
@@ -10,6 +10,9 @@ import { StandardFunctions } from '../common/standardFunctions';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements PIU PIU_SolicitudNovedad_Null of SolicitudNovedad »
+ */
 @Component({
     selector: 'imes-solicitudnovedad-piu-solicitudnovedad-null',
     templateUrl: './piu_solicitudnovedad_null.component.html',

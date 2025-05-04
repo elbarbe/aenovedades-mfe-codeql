@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -11,6 +11,9 @@ import { UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent } from '../usuarionovedad
 
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements MDIU MDIU_FamNov_D_TipoUsuario of FamiliaNovedad »
+ */
 @Component({
     selector: 'imes-familianovedad-mdiu-famnov-d-tipousuario',
     templateUrl: './mdiu_famnov_d_tipousuario.component.html',

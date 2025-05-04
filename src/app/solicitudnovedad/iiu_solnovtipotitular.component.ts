@@ -1,4 +1,4 @@
-﻿import { ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AccNavItem } from '../common/queryIUElements';
@@ -11,6 +11,9 @@ import { LanguageMng } from '../common/languageMng';
 import { ConditionalNavigationMng } from '../common/conditionalNavigationMng';
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements IIU IIU_SolNovTipoTitular of SolicitudNovedad »
+ */
 import { SolicitudNovedadMDIUuSolNovTipoTitularComponent } from './mdiu_solnovtipotitular.component';
 
 export class SolicitudNovedadIIUuSolNovTipoTitularComponent extends AbstractIIU {

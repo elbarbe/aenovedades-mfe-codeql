@@ -64,11 +64,11 @@ export class BHServicesUtil {
     }
 
     public tieneEPSSanitas(tipoIdentificacion: string, numIdentificacion: string, numSolicitud: string): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
+        return new Promise<boolean>((resolve) => {
             this.consultarContratosDePersonaAux(tipoIdentificacion, numIdentificacion, numSolicitud).then( (response: any) => {
                 resolve(response.tieneEPSSanitas);
             }).catch ((err: Error) => {
-                reject(err);
+                resolve(false);
             });
         });
     }

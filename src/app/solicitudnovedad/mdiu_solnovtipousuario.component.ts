@@ -1,4 +1,4 @@
-﻿import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 import { AbstractMDIU } from '../common/abstractMDIU';
@@ -13,6 +13,9 @@ import { SolicitudNovedadIIUuSolNovObservacionesComponent } from './iiu_solnovob
 
 import { UserFunctions } from '../common/userFunctions';
 
+/**
+ * « Implements MDIU MDIU_SolNovTipoUsuario of SolicitudNovedad »
+ */
 @Component({
     selector: 'imes-solicitudnovedad-mdiu-solnovtipousuario',
     templateUrl: './mdiu_solnovtipousuario.component.html',
