@@ -170,4 +170,34 @@ export class GestionCache {
             });
         }
     }
+
+    /**
+     * Devuelve el código del tipo de relación TITULAR
+     * @param oidTipoIdent 
+     */
+    public getCodigoParentescoTitular(): Promise<string> {
+
+        // Si tenemos los datos en la cache
+        let codigo = sessionStorage.getItem('cacheCodigoTitular');
+        if (codigo) {
+            return Promise.resolve(codigo);
+        } else {
+            // Los buscamos y guardamos en cache
+            const filter = this.util.getFilter('iF_ParentescoTitular');
+            const query = this.util.getQueryRequest('codigo', [filter], '', 1);
+            return new Promise<string>((resolve, reject) => {
+                this.util.callQuery(ModelConstants.Parentesco.name, query).then((resp: QueryResponse) => {
+                    let nuevoCod = '';
+                    for (const dato of resp.results) {
+                        nuevoCod = dato.codigo;
+                    }
+                    // Lo guardamos en la sessionstorage
+                    sessionStorage.setItem('cacheCodigoTitular', nuevoCod);
+                    resolve(nuevoCod);
+                }).catch( (err: Error) => {
+                    reject(err);
+                });
+            });
+        }
+    }
 }

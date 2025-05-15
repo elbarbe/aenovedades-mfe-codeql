@@ -25,6 +25,51 @@ export class BHServicesUtil {
      * @returns Array con los contratos recibidos, que es el contenido de 'coverFamilyResponse'
      */
     public consultarContratosAsociadosDePersona(tipoIdentificacion: string, numIdentificacion: string, numSolicitud: string): Promise<any[]> {
+
+        return new Promise<any[]>((resolve, reject) => {        
+            this.gestionCache.getCodigoParentescoTitular().then( (codigoTitular: string) => {
+
+                this.consultarContratosDePersona(tipoIdentificacion,numIdentificacion,numSolicitud).then( (response: any) => {
+                    const listaContratos: any[] = [];
+                    if (response.coverFamilyResponse)  {
+                        let role = '';
+                        // Cargamos los contratos recibidos, pero solo aquellos en los que el contratante es el 
+                        // Titular del contrato: Dentro de 'contract.subject.patient[].role' con type = ID_TIPO_USUARIO y value = 2.
+                        for (const contrato of response.coverFamilyResponse) {
+                            if (!contrato?.contract?.subject?.patient) {
+                                continue;
+                            }
+    
+                            // Recorremos las personas dentro de contract.subject.patient hasta encontrar el contratante
+                            role = '';
+                            for (const patient of contrato.contract.subject.patient) {
+                                if (BHServicesUtil.getValorElementoPorClave(patient?.identifier, 'type', 'TIPO_IDENTIFICACION', 'value') == tipoIdentificacion &&
+                                    BHServicesUtil.getValorElementoPorClave(patient?.identifier, 'type', 'NUMERO_IDENTIFICACION', 'value') == numIdentificacion) {
+                                    
+                                    // role = BHServicesUtil.getValorElementoPorClave(patient?.role, 'type', 'ID_TIPO_USUARIO', 'value');
+                                    role = patient?.relationShip?.code;
+                                    break;
+                                }
+                            }
+    
+                            // Si no es el Titular, nos saltamos el contrato
+                            if (role != codigoTitular) {
+                                continue;
+                            }
+                            // Anyadimos a la lista
+                            listaContratos.push(contrato);
+                        }
+                    }
+                    resolve(listaContratos);
+                }).catch( (err: Error) => {
+                    reject(err);
+                });
+
+            }).catch( (err: Error) => {
+                reject(new Error('Codigo Parentesco Titular no encontrado'));
+            });
+        });
+
         return new Promise<any[]>((resolve, reject) => {
             this.consultarContratosDePersona(tipoIdentificacion,numIdentificacion,numSolicitud).then( (response: any) => {
                 const listaContratos: any[] = [];

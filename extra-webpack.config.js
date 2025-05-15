@@ -9,7 +9,7 @@ module.exports = (config, options) => {
     systemjsModuleName: "@ae/aenovedades"
   }));
 
-  singleSpaWebpackConfig.output.filename = 'aenovedades.8.0.0.js';
+  singleSpaWebpackConfig.output.filename = 'aenovedades.9.0.0.js';
 
   // Feel free to modify this webpack config however you'd like to
   return singleSpaWebpackConfig;
