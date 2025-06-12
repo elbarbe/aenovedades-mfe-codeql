@@ -44,12 +44,12 @@ export class BHGestorAtomicUtil {
                 docClass = environment.bhservicesinfo.documental.documentClass_docsolicitud
             }
 
-            return this.subirFichero(file, nombreDocAsignado, idFolder, docClass, numIdentificacion, numSolicitud);
+            return this.subirFichero(file, nombreDocAsignado, idFolder, docClass, numIdentificacion, numSolicitud, esDocSolicitud);
         }
     }
 
     private subirFichero(file: File, nombreDocAsignado: string,
-        idFolder: string, documentClass: string, numIdentificacion: string, numSolicitud: string): Promise<any> {
+        idFolder: string, documentClass: string, numIdentificacion: string, numSolicitud: string, esDocSolicitud: boolean): Promise<any> {
 
         return new Promise<any>((resolve, reject) => {
 
@@ -61,7 +61,7 @@ export class BHGestorAtomicUtil {
 
                 if (token) {
                     // Llamar al REST de Contract Api
-                    this.subirFicheroAux(token, file, nombreDocAsignado, idFolder, documentClass, numIdentificacion, numSolicitud).then( (response: any) => {
+                    this.subirFicheroAux(token, file, nombreDocAsignado, idFolder, documentClass, numIdentificacion, numSolicitud, esDocSolicitud).then( (response: any) => {
                         resolve(response);
                     }).catch( (err: Error) => {
                         reject(err);
@@ -77,7 +77,7 @@ export class BHGestorAtomicUtil {
     }
 
     private subirFicheroAux(token: string, file: File, nombreDocAsignado: string,
-        idFolder: string, documentClass: string, numIdentificacion: string, numSolicitud: string): Promise<RespuestaGestorAtomic> {
+        idFolder: string, documentClass: string, numIdentificacion: string, numSolicitud: string, esDocSolicitud: boolean): Promise<RespuestaGestorAtomic> {
 
         return new Promise<RespuestaGestorAtomic>((resolve, reject) => {
 
@@ -140,7 +140,7 @@ export class BHGestorAtomicUtil {
             if (numIdentificacion) {
                 datosArchivo.values.NumeroDocumentoIdentidad = numIdentificacion as string;
             }
-            if (numSolicitud) {
+            if (numSolicitud && esDocSolicitud) {
                 datosArchivo.values.NumeroSolicitud = String(numSolicitud);
             }
             
