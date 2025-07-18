@@ -12,12 +12,7 @@
         </span>
         <label class="labelFileName">{{field.fileName}}</label>
     </div>
-    <div class="imesBlobMultipleImage" *ngIf="field.dataFiles && field.dataFiles.length > 0">
-        <ng-container *ngFor="let file of field.dataFiles">
-                <img [src]="util.getSafeUrl('data:image/jpg;base64,' + file.data)" alt="No image data" />
-        </ng-container>
-    </div>
-    <img *ngIf="field.value" [src]="util.getSafeUrl('data:image/jpg;base64,' + field.value)" alt="No image data" />
+
     <div *ngIf="field.validationMessage != ''" class="validationMessage">
         {{field.validationMessage}}
     </div>

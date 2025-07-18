@@ -542,6 +542,8 @@ export class AppGlobalInfo {
         this.loggedUserInfo = null;
         sessionStorage.removeItem('loggedUserInfo');
         this.infoChanged.next();
+        sessionStorage.setItem('aelogoutrequested', '1');
+        window.location.href = environment.msal.redirectUri;
     }
 
 
