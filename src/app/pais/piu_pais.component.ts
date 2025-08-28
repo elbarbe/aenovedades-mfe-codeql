@@ -40,6 +40,9 @@ export class PaisPIUuPaisComponent extends AbstractPIU implements OnInit {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1432206704640584UIPobCl_1';
         this.className = ModelConstants.Pais.name;
+        this.classAlias = this.langMng.translateText('cls_Pais',
+            'País');
+        this.supplementaryInfoAtt.push('descripcion');
         this.iuName = ModelConstants.Pais.piuupais;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, []));
         this.title = this.langMng.translateText('cls_Pais_piu_PIU_Pais',

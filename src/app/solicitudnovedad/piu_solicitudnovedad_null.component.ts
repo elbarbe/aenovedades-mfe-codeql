@@ -39,9 +39,12 @@ export class SolicitudNovedadPIUuSolicitudNovedaduNullComponent extends Abstract
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581421428736234UIPobCl_7';
         this.className = ModelConstants.Solicitudnovedad.name;
+        this.classAlias = this.langMng.translateText('cls_SolicitudNovedad',
+            'Solicitud de Novedad');
+        this.supplementaryInfoAtt.push('drvnumradicadostr');
         this.iuName = ModelConstants.Solicitudnovedad.piuusolicitudnovedadunull;
-        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
-            'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
+        this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Funcionario', 'Admin', 'SuperAdmin',
+            'Asesor', 'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_SolicitudNovedad_piu_PIU_SolicitudNovedad_Null',
             'Solicitud de Novedad');
         this.queryURL = '/api/SolicitudNovedadApi/GetPopulationDynamic';
@@ -69,8 +72,9 @@ export class SolicitudNovedadPIUuSolicitudNovedaduNullComponent extends Abstract
         dsItem.alias = this.langMng.translateText(
             'cls_SolicitudNovedad_ds_DS_SolicitudNovedad_Null_item_Clas_1581421428736234CjtoVis_14ICtjoVis_1',
             this.dsid);
-        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
+        dsItem.agents = [ModelConstants.Funcionario.name, ModelConstants.Admin.name, ModelConstants.Superadmin.name,
+            ModelConstants.Asesor.name, ModelConstants.Areamedica.name, ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name,
+            ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
     }
 

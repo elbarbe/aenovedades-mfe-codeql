@@ -39,6 +39,8 @@ export class ProteccionDatosPIUuProteccionDatosuNullComponent extends AbstractPI
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1432207097856829UIPobCl_1';
         this.className = ModelConstants.Protecciondatos.name;
+        this.classAlias = this.langMng.translateText('cls_ProteccionDatos',
+            'Protección de datos');
         this.iuName = ModelConstants.Protecciondatos.piuuprotecciondatosunull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'AreaMedica', 'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

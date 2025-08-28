@@ -44,6 +44,8 @@ export class LogEstadoDocNovPIUuLogEstadoDocNovComponent extends AbstractPIU imp
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1594054803456437UIPobCl_1';
         this.className = ModelConstants.Logestadodocnov.name;
+        this.classAlias = this.langMng.translateText('cls_LogEstadoDocNov',
+            'Observaciones');
         this.iuName = ModelConstants.Logestadodocnov.piuulogestadodocnov;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

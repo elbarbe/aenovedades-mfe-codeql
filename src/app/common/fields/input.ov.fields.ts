@@ -13,6 +13,8 @@ import { FieldOVLense, FieldOVLenseSearch, FieldOVPreload } from '../baseIUEleme
     @Output() searched = new EventEmitter<void>();
     /** Select instance event */
     @Output() selected = new EventEmitter<number>();
+    /** Action event, tipically Enter key */
+    @Output() doAction = new EventEmitter<void>();
 
     /** Flag to show/hide the selected instances dialog */
     public showDialogSelectedInstances = false;
@@ -128,21 +130,31 @@ export class LenseSearchComponent extends AbstractLenseComponent {
 
 
     /**
-     * Manages the keypress event
+     * Manages the key down event
      */
-    public onKeypressLenseSearch(): void {
-        this.keypressLenseSearch.emit();
+    public onKeyDown(event: KeyboardEvent): void {
+        if (event.key === 'Enter' || event.key === 'NumpadEnter' || event.keyCode === 13) {
+            event.preventDefault();
+            if (this.doAction.observed) {
+                this.doAction.emit();
+            }
+            if (this.field) {
+                this.field.onKeyDown(event.key);
+            }
+        } else {
+            this.keypressLenseSearch.emit();
+        }
     }
 
     /**
-     * Manages the key down event
+     * Manages the key Up event
      */
     public onKeyUp(event: KeyboardEvent): void {
         if (this.field && this.field.text) {
             this.field.text = this.field.text.toUpperCase();
         }
     }    
-
+    
     /**
      * Remove an instance from the selected ones
      * @param index Index to remove
@@ -179,6 +191,8 @@ export class PreloadComponent {
     @Input() field!: FieldOVPreload;
     /** Select instance event */
     @Output() selected = new EventEmitter<number>();
+    /** Action event, tipically Enter key */
+    @Output() doAction = new EventEmitter<void>();
 
     constructor(
         public readonly langMng: LanguageMng) {
@@ -192,6 +206,20 @@ export class PreloadComponent {
         this.selected.emit(index);
     }
 
+    /**
+     * Manages the key down event
+     */
+    public onKeyDown(event: KeyboardEvent): void {
+        if (event.key === 'Enter' || event.key === 'NumpadEnter' || event.keyCode === 13) {
+            event.preventDefault();
+            if (this.doAction.observed) {
+                this.doAction.emit();
+            }
+            if (this.field) {
+                this.field.onKeyDown(event.key);
+            }
+        }
+    }
 }
 
 @Component({

@@ -42,6 +42,9 @@ export class UsuarioNovedadPIUuUsuNovuTipoTitularComponent extends AbstractPIU {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581442138112529UIPobCl_1';
         this.className = ModelConstants.Usuarionovedad.name;
+        this.classAlias = this.langMng.translateText('cls_UsuarioNovedad',
+            'Usuario');
+        this.supplementaryInfoAtt.push('drvnombrecompleto');
         this.iuName = 'PIU_UsuNov_TipoTitular';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

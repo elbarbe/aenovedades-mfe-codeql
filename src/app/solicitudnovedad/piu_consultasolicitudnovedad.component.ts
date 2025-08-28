@@ -52,6 +52,9 @@ export class SolicitudNovedadPIUuConsultaSolicitudNovedadComponent extends Abstr
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581421428736234UIPobCl_1';
         this.className = ModelConstants.Solicitudnovedad.name;
+        this.classAlias = this.langMng.translateText('cls_SolicitudNovedad',
+            'Solicitud de Novedad');
+        this.supplementaryInfoAtt.push('drvnumradicadostr');
         this.iuName = ModelConstants.Solicitudnovedad.piuuconsultasolicitudnovedad;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

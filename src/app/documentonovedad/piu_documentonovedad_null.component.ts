@@ -39,6 +39,9 @@ export class DocumentoNovedadPIUuDocumentoNovedaduNullComponent extends Abstract
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1582535933952300UIPobCl_2';
         this.className = ModelConstants.Documentonovedad.name;
+        this.classAlias = this.langMng.translateText('cls_DocumentoNovedad',
+            'Documento');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Documentonovedad.piuudocumentonovedadunull;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

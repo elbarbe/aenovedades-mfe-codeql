@@ -35,6 +35,9 @@ export class SolicitudNovedadIIUuSolNovContrauTipoTitularComponent extends Abstr
         super(appGlobalInfo, util, changeDetectorRef, condNavMng);
         this.idXML = 'Clas_1581421428736234UIInst_7';
         this.className = ModelConstants.Solicitudnovedad.name;
+        this.classAlias = this.langMng.translateText('cls_SolicitudNovedad',
+            'Solicitud de Novedad');
+        this.supplementaryInfoAtt.push('drvnumradicadostr');
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
         this.title = this.langMng.translateText('cls_SolicitudNovedad_iiu_IIU_SolNovContra_TipoTitular',

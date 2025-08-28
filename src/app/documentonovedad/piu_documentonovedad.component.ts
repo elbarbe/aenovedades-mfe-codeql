@@ -48,6 +48,9 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1582535933952300UIPobCl_1';
         this.className = ModelConstants.Documentonovedad.name;
+        this.classAlias = this.langMng.translateText('cls_DocumentoNovedad',
+            'Documento');
+        this.supplementaryInfoAtt.push('nombre');
         this.iuName = ModelConstants.Documentonovedad.piuudocumentonovedad;
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));

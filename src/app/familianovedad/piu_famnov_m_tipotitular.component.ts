@@ -42,6 +42,9 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1581424574464890UIPobCl_1';
         this.className = ModelConstants.Familianovedad.name;
+        this.classAlias = this.langMng.translateText('cls_FamiliaNovedad',
+            'Familia');
+        this.supplementaryInfoAtt.push('numfamilia');
         this.iuName = 'PIU_FamNov_M_TipoTitular';
         this.setUserVisibility(this.appGlobalInfo.getLoggedUserInfo().isIUVisible(this.idXML, ['Admin', 'SuperAdmin', 'Asesor',
             'Afiliaciones', 'Gestor', 'MesaDeApoyo']));
