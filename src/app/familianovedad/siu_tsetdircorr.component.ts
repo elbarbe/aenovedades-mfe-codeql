@@ -53,7 +53,7 @@ export class FamiliaNovedadSIUuTSETDIRCORRComponent extends AbstractServiceIU im
 
         // Create inbound argument components
         this.puthisFamiliaNovedad = new FieldOVLense(this.langMng);
-        this.ptupuagrPais = new FieldOVLenseSearch(this.langMng);
+        this.ptupuagrPais = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuagrDepartamento = new FieldOVPreload(this.langMng);
         this.ptupuagrMunicipio = new FieldOVPreload(this.langMng);
         this.ptupuatrDireccionCompleta = new Field(this.langMng);
@@ -549,44 +549,20 @@ export class FamiliaNovedadSIUuTSETDIRCORRComponent extends AbstractServiceIU im
             });
         }
     }
-
     /**
      * Process the change in the pt_p_agrPais lense search argument
      */
     public onptupuagrpaisChange(): void {
-
-        const searchText = this.ptupuagrPais.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.ptupuagrPais.lastText) {
-                this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                this.ptupuagrPais.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Pais.name, 'IC_Pais', searchText, [], null).then(
-                        (response: any) => {
-                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPais.searchResults = response.results;
-                            if (this.ptupuagrPais.searchResults &&
-                                this.ptupuagrPais.searchResults.length === 0) {
-                                this.ptupuagrPais.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.ptupuagrPais.searchResults &&
-                                this.ptupuagrPais.searchResults.length === 1) {
-                                this.processptupuagrpaisSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-                            this.ptupuagrPais.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.ptupuagrPais, ModelConstants.Pais.name, 'IC_Pais',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanptupuagrpais();
             }
-        } else {
-            this.ptupuagrPais.removeCSSClass('noResultsLenseSearch');
-            this.ptupuagrPais.searchResults = [];
-            this.cleanptupuagrpais();
-        }
-
+            if (foundInstances === 1) {
+                this.processptupuagrpaisSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -606,7 +582,7 @@ export class FamiliaNovedadSIUuTSETDIRCORRComponent extends AbstractServiceIU im
                 this.ptupuagrPais.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.ptupuagrPais.getSelectedInstances().push(selectedInstance);
+            this.ptupuagrPais.addInstances(selectedInstance);
         }
         this.executeDependecyRulesptupuagrpais('SetValue', false);
         this.changeDetectorRef.markForCheck();

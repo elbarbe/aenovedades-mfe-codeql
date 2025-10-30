@@ -104,7 +104,23 @@ export class BHServicesUtil {
      * @returns 
      */
     public consultarContrato(codigoLegalProducto: string, codigoLegalPlan: string, numContrato: string, numSolicitud: string): Promise<any> {
-        const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + '/api/bhcall/consultarContrato';
+        return this.consultarContratoAux('/api/bhcall/consultarContrato', codigoLegalProducto, codigoLegalPlan, numContrato, numSolicitud);
+    }
+
+    /**
+     * Devuelve la información de un contrato sin que sea el último válido
+     * @param codigoLegalProducto 
+     * @param codigoLegalPlan 
+     * @param numContrato 
+     * @param numSolicitud 
+     * @returns 
+     */
+    public consultarContratoNoLastValid(codigoLegalProducto: string, codigoLegalPlan: string, numContrato: string, numSolicitud: string): Promise<any> {
+        return this.consultarContratoAux('/api/bhcall/consultarContratoNoLastValid', codigoLegalProducto, codigoLegalPlan, numContrato, numSolicitud);
+    }
+
+    private consultarContratoAux(endPoint: string, codigoLegalProducto: string, codigoLegalPlan: string, numContrato: string, numSolicitud: string): Promise<any> {
+        const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + endPoint;
 
         let headers = new HttpHeaders();
         if (this.appGlobalInfo.getLoggedUserInfo().token) {
@@ -125,7 +141,12 @@ export class BHServicesUtil {
                 {
                     next: (res: any) => {
                         if (res.body && res.body.exito) {
-                            resolve(res.body.coverResponse);
+                            if (res.body.coverResponse.coverFamilyResponse || res.body.coverResponse.coverResponse) {
+                                resolve(res.body.coverResponse);
+                            } else {
+                                const errorInfo = new ErrorInformation(false, '', 'El contrato indicado no existe', '', []);
+                                reject(errorInfo);
+                            }
                         } else {
                             const errorInfo = new ErrorInformation(false, '', res.body.textoError, '', []);
                             reject(errorInfo);
@@ -469,5 +490,201 @@ export class BHServicesUtil {
             return array.find((el: any) => el[clave] && el[clave].includes(valorClave));
         }
         return undefined;
+    }
+
+    /**
+     * Devuelve la lista de Compañias (Productos) que están configurados para cancelación de contratos
+     * @returns 
+     */
+    public consultarCompanyasReactivacionContratos(): Promise<any> {
+        const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + "/api/bhcall/consultarCompanyasReactivacionContratos";
+
+        let headers = new HttpHeaders();
+        if (this.appGlobalInfo.getLoggedUserInfo().token) {
+            headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
+        }
+        headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
+        const responseType = 'json';
+        const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
+
+        return new Promise<any>((resolve, reject) => {
+            this.httpClient.get(url, options).subscribe(
+                    {
+                    next: (res: any) => {
+                        if (res.body) {
+                            resolve(res.body);
+                        } else {
+                            resolve(null);
+                        }
+                    },
+                    error: (msg: any) => {
+                        const errorInfo = new RequestError(msg);
+                        errorInfo.messageId = 'app_BACKENDUNKNOWNERROR';
+                        reject(errorInfo);
+                    }
+                }
+            )
+        });
+    }
+
+    /**
+     * Devuelve la lista de Planes (todos) que están configurados para cancelación de contratos
+     * @returns 
+     */
+    public consultarPlanesReactivacionContratos(): Promise<any> {
+        const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + "/api/bhcall/consultarPlanesReactivacionContratos";
+
+        let headers = new HttpHeaders();
+        if (this.appGlobalInfo.getLoggedUserInfo().token) {
+            headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
+        }
+        headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
+        const responseType = 'json';
+        const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
+
+        return new Promise<any>((resolve, reject) => {
+            this.httpClient.get(url, options).subscribe(
+                    {
+                    next: (res: any) => {
+                        if (res.body) {
+                            resolve(res.body);
+                        } else {
+                            resolve(null);
+                        }
+                    },
+                    error: (msg: any) => {
+                        const errorInfo = new RequestError(msg);
+                        errorInfo.messageId = 'app_BACKENDUNKNOWNERROR';
+                        reject(errorInfo);
+                    }
+                }
+            )
+        });
+    }    
+
+    /**
+     * Devuelve el contrato, si existe, con la información de reactivación de contratos
+     * @returns 
+     */
+    public consultarContratoParaReactivacion(codProducto: string, codPlan: string, numContrato: string): Promise<any> {
+        const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + "/api/bhcall/consultarContratoParaReactivacion";
+
+        let headers = new HttpHeaders();
+        if (this.appGlobalInfo.getLoggedUserInfo().token) {
+            headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
+        }
+        headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
+        const responseType = 'json';
+        const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
+
+        const peticion = {
+            "codProducto": codProducto,
+            "codPlan": codPlan,
+            "numContrato": numContrato
+        };
+        return new Promise<any>((resolve, reject) => {
+            this.httpClient.post(url, peticion, options).subscribe(
+                    {
+                    next: (res: any) => {
+                        if (res.body) {
+                            resolve(res.body);
+                        } else {
+                            resolve(null);
+                        }
+                    },
+                    error: (msg: any) => {
+                        const errorInfo = new RequestError(msg);
+                        errorInfo.messageId = 'app_BACKENDUNKNOWNERROR';
+                        reject(errorInfo);
+                    }
+                }
+            )
+        });
+    }    
+
+    /**
+     * Invoca al servicio apra crear una eractivación de contrato
+     * @param codProducto Producto
+     * @param codPlan Plan
+     * @param numContrato Contrato
+     * @param valor Valor a pagar
+     * @param modificar True si se trata de una modificación, false si es creación
+     * @returns 
+     */
+    public crearModificarReactivacionContrato(codProducto: string, codPlan: string, numContrato: string, valor: number, modificar: boolean): Promise<any> {
+        let url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + "/api/bhcall/crearSolicitudReactivacionContrato";
+        if (modificar) {
+            url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + "/api/bhcall/modificarSolicitudReactivacionContrato";
+        }
+
+        let headers = new HttpHeaders();
+        if (this.appGlobalInfo.getLoggedUserInfo().token) {
+            headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
+        }
+        headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
+        const responseType = 'json';
+        const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
+
+        const peticion = {
+            "codProducto": codProducto,
+            "codPlan": codPlan,
+            "numContrato": numContrato,
+            "valorPagar": valor
+        };
+        return new Promise<any>((resolve, reject) => {
+            this.httpClient.post(url, peticion, options).subscribe(
+                    {
+                    next: (res: any) => {
+                        if (res.body) {
+                            resolve(res.body);
+                        } else {
+                            resolve(null);
+                        }
+                    },
+                    error: (msg: any) => {
+                        const errorInfo = new RequestError(msg);
+                        errorInfo.messageId = 'app_BACKENDUNKNOWNERROR';
+                        reject(errorInfo);
+                    }
+                }
+            )
+        });
+    }
+
+
+    public eliminarSolicitudReactivacionContrato(codProducto: string, codPlan: string, numContrato: string): Promise<any> {
+        const url = this.appGlobalInfo.APPCONSTANTS.BASE_URL + "/api/bhcall/eliminarSolicitudReactivacionContrato";
+
+        let headers = new HttpHeaders();
+        if (this.appGlobalInfo.getLoggedUserInfo().token) {
+            headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
+        }
+        headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
+        const responseType = 'json';
+        const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
+
+        const peticion = {
+            "codProducto": codProducto,
+            "codPlan": codPlan,
+            "numContrato": numContrato
+        };
+        return new Promise<any>((resolve, reject) => {
+            this.httpClient.post(url, peticion, options).subscribe(
+                    {
+                    next: (res: any) => {
+                        if (res.body) {
+                            resolve(res.body);
+                        } else {
+                            resolve(null);
+                        }
+                    },
+                    error: (msg: any) => {
+                        const errorInfo = new RequestError(msg);
+                        errorInfo.messageId = 'app_BACKENDUNKNOWNERROR';
+                        reject(errorInfo);
+                    }
+                }
+            )
+        });
     }
 }

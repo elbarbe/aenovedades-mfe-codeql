@@ -44,7 +44,7 @@ export class DocumentoNovedadSIUuTAPROBARComponent extends AbstractServiceIU imp
             'Aprobar');
 
         // Create inbound argument components
-        this.puthisDocumentoNovedad = new FieldOVLenseSearch(this.langMng);
+        this.puthisDocumentoNovedad = new FieldOVLenseSearch(this.langMng, this.util);
         this.ptupuatrObservacions = new Field(this.langMng);
 
     }
@@ -156,44 +156,20 @@ export class DocumentoNovedadSIUuTAPROBARComponent extends AbstractServiceIU imp
             });
         }
     }
-
     /**
      * Process the change in the p_thisDocumentoNovedad lense search argument
      */
     public onputhisdocumentonovedadChange(): void {
-
-        const searchText = this.puthisDocumentoNovedad.text;
-        if (searchText && searchText !== '') {
-            if (searchText !== this.puthisDocumentoNovedad.lastText) {
-                this.puthisDocumentoNovedad.removeCSSClass('noResultsLenseSearch');
-                this.puthisDocumentoNovedad.lastText = searchText;
-                this.util.searchLenseSearch(ModelConstants.Documentonovedad.name, 'IC_DocumentoNovedad', searchText, [], null).then(
-                        (response: any) => {
-                            this.puthisDocumentoNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDocumentoNovedad.searchResults = response.results;
-                            if (this.puthisDocumentoNovedad.searchResults &&
-                                this.puthisDocumentoNovedad.searchResults.length === 0) {
-                                this.puthisDocumentoNovedad.addCSSClass('noResultsLenseSearch');
-                            }
-                            if (this.puthisDocumentoNovedad.searchResults &&
-                                this.puthisDocumentoNovedad.searchResults.length === 1) {
-                                this.processputhisdocumentonovedadSelected(0);
-                            }
-                            this.changeDetectorRef.markForCheck();
-                        },
-                        (response: any) => {
-                            this.puthisDocumentoNovedad.removeCSSClass('noResultsLenseSearch');
-                            this.puthisDocumentoNovedad.searchResults = [];
-                            this.util.addErrorMessage(response.message);
-                            this.changeDetectorRef.markForCheck();
-                        });
+        this.executeLenseSearch(this.puthisDocumentoNovedad, ModelConstants.Documentonovedad.name, 'IC_DocumentoNovedad',
+            []).then( (foundInstances: number) => {
+            if (foundInstances === -1) {
+                this.cleanputhisdocumentonovedad();
             }
-        } else {
-            this.puthisDocumentoNovedad.removeCSSClass('noResultsLenseSearch');
-            this.puthisDocumentoNovedad.searchResults = [];
-            this.cleanputhisdocumentonovedad();
-        }
-
+            if (foundInstances === 1) {
+                this.processputhisdocumentonovedadSelected(0);
+            }
+            this.changeDetectorRef.markForCheck();
+        });
         this.changeDetectorRef.markForCheck();
     }
 
@@ -213,7 +189,7 @@ export class DocumentoNovedadSIUuTAPROBARComponent extends AbstractServiceIU imp
                 this.puthisDocumentoNovedad.cleanSelectedInstances();
             }
             selectedInstance.oid = JSON.parse(selectedInstance.jsonOID);
-            this.puthisDocumentoNovedad.getSelectedInstances().push(selectedInstance);
+            this.puthisDocumentoNovedad.addInstances(selectedInstance);
         }
         this.executeDependecyRulesputhisdocumentonovedad('SetValue', false);
         this.changeDetectorRef.markForCheck();
