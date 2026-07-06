@@ -36,10 +36,10 @@ export class ConditionalNavigationMng {
 
         this.appGlobalInfo.appExchangeInfo.clearConditionalNavigation();
 
-        switch (className) {
-            case 'ProteccionDatos':
+        switch (className.toLowerCase()) {
+            case 'ProteccionDatos'.toLowerCase():
                 return this.processCondNavprotecciondatos(serviceName, request, response, previousContext, comeBackContext);
-            case 'SolicitudNovedad':
+            case 'SolicitudNovedad'.toLowerCase():
                 return this.processCondNavsolicitudnovedad(serviceName, request, response, previousContext, comeBackContext);
         }
         return false;

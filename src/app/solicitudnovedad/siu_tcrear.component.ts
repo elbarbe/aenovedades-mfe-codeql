@@ -169,7 +169,7 @@ export class SolicitudNovedadSIUuTCREARComponent extends AbstractServiceIU imple
         this.ptupuagrProteccionDatos.mandatory = true;
         this.ptupuagrProteccionDatos.dataType = ModelConstants.Protecciondatos.name;
         this.ptupuagrProteccionDatos.oidFields = Array(1);
-        this.ptupuagrProteccionDatos.oidFieldsTypes = ['autonumerico'];
+        this.ptupuagrProteccionDatos.oidFieldsTypes = [Field.dtAuto];
         this.ptupuagrProteccionDatos.assignCSS();
         this.fields.push(this.ptupuagrProteccionDatos);
     }
@@ -597,7 +597,7 @@ export class SolicitudNovedadSIUuTCREARComponent extends AbstractServiceIU imple
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.ptupuagrProteccionDatos.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

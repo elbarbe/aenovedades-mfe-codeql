@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { ErrorInformation, QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'DocumentoNovedad'
+ * « Service and queries of class 'DocumentoNovedad' »
  */
 export class DocumentoNovedadServices extends AbstractServices {
 
@@ -70,7 +70,9 @@ export class DocumentoNovedadServices extends AbstractServices {
     public descargarDocumentoATO(
         puthisDocumentoNovedadInArg: any):
         Promise<{
-            oaurldescarga: string
+            oaurldescarga: string,
+            oatoken: string,
+            oanumsolicitud: string
         }> {
         const request: {
             p_thisdocumentonovedad_oid: any
@@ -78,11 +80,15 @@ export class DocumentoNovedadServices extends AbstractServices {
             p_thisdocumentonovedad_oid: puthisDocumentoNovedadInArg
         };
         return new Promise<{
-            oaurldescarga: string
+            oaurldescarga: string,
+            oatoken: string,
+            oanumsolicitud: string
         }> ((resolve, reject) => {
             this.callService(this.descargarDocumentoATOSrvName, request).then((response: any) => {
                 resolve({
-                    oaurldescarga: response.oaurldescarga
+                    oaurldescarga: response.oaurldescarga,
+                    oatoken: response.oatoken,
+                    oanumsolicitud: response.oanumsolicitud
                 });
             }).catch( (errorInfo: ErrorInformation) => {
                 reject(errorInfo);

@@ -78,7 +78,7 @@ export class FamiliaNovedadSIUuTCREARMANUALComponent extends AbstractServiceIU i
         this.ptupuagrSolicitud.mandatory = true;
         this.ptupuagrSolicitud.dataType = ModelConstants.Solicitudnovedad.name;
         this.ptupuagrSolicitud.oidFields = Array(1);
-        this.ptupuagrSolicitud.oidFieldsTypes = ['autonumerico'];
+        this.ptupuagrSolicitud.oidFieldsTypes = [Field.dtAuto];
         this.ptupuagrSolicitud.assignCSS();
         this.fields.push(this.ptupuagrSolicitud);
 
@@ -310,7 +310,7 @@ export class FamiliaNovedadSIUuTCREARMANUALComponent extends AbstractServiceIU i
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.ptupuagrSolicitud.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

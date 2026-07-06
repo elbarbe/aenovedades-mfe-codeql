@@ -3,7 +3,7 @@ import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
 
 /**
- * Service and queries of class 'Pais'
+ * « Service and queries of class 'Pais' »
  */
 export class PaisServices extends AbstractServices {
 

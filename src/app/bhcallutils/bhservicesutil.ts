@@ -223,19 +223,22 @@ export class BHServicesUtil {
                     const estatus = bene?.status?.code;
                     const finVigencia = bene?.period?.end;
 
-                    // SOlo nos interesan los que tengan estado HABILITADO o NO HABILITADO
-                    if (estatus === 'NO HABILITADO') {
-                        // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
-                        const contratoExistente = mapaContratos.get(clave);
-                        if (contratoExistente && 'NO HABILITADO' === contratoExistente.coverage[0].status?.code &&
-                            finVigencia > contratoExistente.coverage[0].period?.end) {
+                    // Solo nos interesan los que tengan estado HABILITADO o NO HABILITADO
+                    if (estatus === 'NO HABILITADO' || estatus === 'HABILITADO') {
+                        if (estatus === 'NO HABILITADO' && finVigencia) {
+                            // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
+                            const contratoExistente = mapaContratos.get(clave);
+                            if (contratoExistente) {
+                                if ('NO HABILITADO' === contratoExistente.coverage[0].status?.code &&
+                                    finVigencia > contratoExistente.coverage[0].period?.end) {
+                                    mapaContratos.set(clave, contrato);
+                                }
+                            } else {
+                                mapaContratos.set(clave, contrato);    
+                            }
+                        } else {
                             mapaContratos.set(clave, contrato);
                         }
-                    }
-
-                    if (estatus === 'HABILITADO') {
-                        // Los habilitados, los metemos directamente
-                        mapaContratos.set(clave, contrato);
                     }
                 }
             }
@@ -268,20 +271,22 @@ export class BHServicesUtil {
                 const estatus = contrato.contract?.status;
                 const finVigencia = contrato.applies?.end;
 
-
-                // SOlo nos interesan los que tengan estado HABILITADO o NO HABILITADO
-                if (estatus === 'NO HABILITADO') {
-                    // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
-                    const contratoExistente = mapaContratos.get(clave);
-                    if (contratoExistente && 'NO HABILITADO' === contratoExistente.contract?.status &&
-                        finVigencia > contratoExistente.applies?.end) {
+                // Solo nos interesan los que tengan estado HABILITADO o NO HABILITADO
+                if (estatus === 'NO HABILITADO' || estatus === 'HABILITADO') {
+                    if (estatus === 'NO HABILITADO' && finVigencia) {
+                        // Los no habilitados, tan solo si su fecha es mayor de otro que ya exista
+                        const contratoExistente = mapaContratos.get(clave);
+                        if (contratoExistente) {
+                            if ('NO HABILITADO' === contratoExistente.coverage[0].status?.code &&
+                                finVigencia > contratoExistente.coverage[0].period?.end) {
+                                mapaContratos.set(clave, contrato);
+                            }
+                        } else {
+                            mapaContratos.set(clave, contrato);    
+                        }
+                    } else {
                         mapaContratos.set(clave, contrato);
                     }
-                }
-
-                if (estatus === 'HABILITADO') {
-                    // Los habilitados, los metemos directamente
-                    mapaContratos.set(clave, contrato);
                 }
             }
 
@@ -450,7 +455,7 @@ export class BHServicesUtil {
      * @param campo Campo a devolver
      * @returns 
      */
-    public static getValorElementoPor2Claves(array: any[], clave: string, valorClave: string, clave2: string, valorClave2: string, campo: string): any {
+    private static getValorElementoPor2Claves(array: any[], clave: string, valorClave: string, clave2: string, valorClave2: string, campo: string): any {
         if (array && clave && clave2 && campo) {
             const elemento = array.find((el: any) => el[clave] && el[clave].includes(valorClave) &&
                 el[clave2] && el[clave2].includes(valorClave2) &&
@@ -460,6 +465,30 @@ export class BHServicesUtil {
             }
         }
         return undefined;
+    }
+
+    private static getElementosPor2Claves(array: any[], clave: string, valorClave: string, clave2: string, valorClave2: string): any[] {
+        const retorno: any[] = [];
+        if (array && clave && clave2) {
+            for (const el of array) {
+                if (el[clave] && el[clave].includes(valorClave) && el[clave2] && el[clave2].includes(valorClave2)) {
+                    retorno.push(el);
+                }
+            }
+        }
+        return retorno;
+    }
+
+    private static getElementosPorClave(array: any[], clave: string, valorClave: string): any[] {
+        const retorno: any[] = [];
+        if (array && clave) {
+            for (const el of array) {
+                if (el[clave] && el[clave].includes(valorClave)) {
+                    retorno.push(el);
+                }
+            }
+        }
+        return retorno;
     }
 
     /**
@@ -488,6 +517,68 @@ export class BHServicesUtil {
     public static getElemento(array: any[], clave: string, valorClave: string): any {
         if (array && clave) {
             return array.find((el: any) => el[clave] && el[clave].includes(valorClave));
+        }
+        return undefined;
+    }
+
+
+    public static getTelefonoFijoResidencia(array: any[]): any {
+        const posibles = BHServicesUtil.getElementosPor2Claves(array,
+            'system', 'TELEFONO_CONTACTO_PRINCIPAL',
+            'use', 'RESIDENCIAL');
+
+        // De los posibles nos quedamos con el primero que tenga 7 de longitud
+        for (const el of posibles) {
+            if (el && el['value'] && el['value'].length === 7) {
+                return el['value'];
+            }
+        }
+        return undefined;
+    }
+
+    public static getTelefonoCelularResidencia(array: any[]): any {
+        const posibles = BHServicesUtil.getElementosPorClave(array,
+            'system', 'CELULAR_CONTACTO_PRINCIPAL');
+
+        // De los posibles nos quedamos con el primero que tenga 10 de longitud
+        for (const el of posibles) {
+            if (el && el['value'] && el['value'].length === 10) {
+                return el['value'];
+            }
+        }
+        return undefined;
+    }
+
+    public static getCorreoElectronico(array: any[]): any {
+        return BHServicesUtil.getValorElementoPorClave(array,
+            'system',
+            'CORREO_ELECTRONICO',
+            'value');
+    }
+
+    public static getTelefonoFijoCorrespondencia(array: any[]): any {
+        const posibles = BHServicesUtil.getElementosPor2Claves(array,
+            'system', 'OTRO_TELEFONO_CONTACTO',
+            'use', 'CORRESPONDENCIA');
+
+        // De los posibles nos quedamos con el primero que tenga 7 de longitud
+        for (const el of posibles) {
+            if (el && el['value'] && el['value'].length === 7) {
+                return el['value'];
+            }
+        }
+        return undefined;
+    }
+
+    public static getTelefonoCelularCorrespondencia(array: any[]): any {
+        const posibles = BHServicesUtil.getElementosPorClave(array,
+            'system', 'OTRO_TELEFONO_CONTACTO');
+
+        // De los posibles nos quedamos con el primero que tenga 10 de longitud
+        for (const el of posibles) {
+            if (el && el['value'] && el['value'].length === 10) {
+                return el['value'];
+            }
         }
         return undefined;
     }

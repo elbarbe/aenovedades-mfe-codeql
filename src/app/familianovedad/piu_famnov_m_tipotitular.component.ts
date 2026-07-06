@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -185,7 +185,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
             this.langMng.translateText(
             'cls_SolicitudNovedad_svc_TADDFAMILIA',
             'Añadir Familia'));
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -203,7 +203,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
             this.langMng.translateText(
             'cls_FamiliaNovedad_svc_TCREARMANUAL',
             'Añadir familia'));
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -217,7 +217,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
         accItem.agents = [ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
         accItem.targetClass = ModelConstants.Familianovedad.name;
         accItem.targetUI = ModelConstants.Familianovedad.siuutcrearusumanual;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -235,7 +235,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
             this.langMng.translateText(
             'cls_FamiliaNovedad_svc_TMODIFICARMANUAL',
             'Modificar'));
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -250,7 +250,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
             ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Familianovedad.name;
         accItem.targetUI = ModelConstants.Familianovedad.siuutfirmartitular;
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -271,7 +271,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['famactiva'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -292,7 +292,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['drvtienenuevotitular'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -313,7 +313,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['solicitud.novedad.aliasnovedad'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -328,7 +328,7 @@ export class FamiliaNovedadPIUuFamNovuMuTipoTitularComponent extends AbstractPIU
             ModelConstants.Afiliaciones.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Familianovedad.name;
         accItem.targetUI = ModelConstants.Familianovedad.siuutdelete;
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

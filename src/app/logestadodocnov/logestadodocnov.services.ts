@@ -4,7 +4,7 @@ import { Util } from '../common/app.utils';
 import { QueryResponse } from '../common/answerRequestInformation';
 
 /**
- * Service and queries of class 'LogEstadoDocNov'
+ * « Service and queries of class 'LogEstadoDocNov' »
  */
 export class LogEstadoDocNovServices extends AbstractServices {
 

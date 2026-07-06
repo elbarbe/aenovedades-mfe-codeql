@@ -190,12 +190,9 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
             this.ptupuatrIndicadorExtranjero.value = false;
         }
 
-        this.ptupuatrTelefonoFijo.value = BHServicesUtil.getValorElementoPor2Claves(datosPersona?.contact?.telecom, 
-                'system', 'TELEFONO_CONTACTO_PRINCIPAL', 
-                'use', 'RESIDENCIAL', 
-                'value');
-        this.ptupuatrTelefonoCelular.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CELULAR_CONTACTO_PRINCIPAL', 'value');
-        this.ptupuatrCorreoElectronico.value = BHServicesUtil.getValorElementoPorClave(datosPersona?.contact?.telecom, 'system', 'CORREO_ELECTRONICO', 'value');
+        this.ptupuatrTelefonoFijo.value = BHServicesUtil.getTelefonoFijoResidencia(datosPersona?.contact?.telecom);
+        this.ptupuatrTelefonoCelular.value = BHServicesUtil.getTelefonoCelularResidencia(datosPersona?.contact?.telecom);
+        this.ptupuatrCorreoElectronico.value = BHServicesUtil.getCorreoElectronico(datosPersona?.contact?.telecom);
 
 
         // Ciudad de nacimiento
@@ -287,7 +284,7 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
         this.puthisFamiliaNovedad.mandatory = true;
         this.puthisFamiliaNovedad.dataType = ModelConstants.Familianovedad.name;
         this.puthisFamiliaNovedad.oidFields = Array(1);
-        this.puthisFamiliaNovedad.oidFieldsTypes = ['autonumerico'];
+        this.puthisFamiliaNovedad.oidFieldsTypes = [Field.dtAuto];
         this.puthisFamiliaNovedad.assignCSS();
         this.fields.push(this.puthisFamiliaNovedad);
 
@@ -1023,7 +1020,7 @@ export class FamiliaNovedadSIUuTADDTITULARComponent extends AbstractServiceIU im
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisFamiliaNovedad.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

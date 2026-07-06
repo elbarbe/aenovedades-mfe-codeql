@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -15,6 +15,7 @@ import { UserFunctions } from '../common/userFunctions';
  * « Implements PIU PIU_DocumentoNovedad of DocumentoNovedad »
  */
 import { DocumentoNovedadServices } from './documentonovedad.services';
+import { BHGestorAtomicUtil } from '../bhcallutils/bhgestoratomicutil';
 
 @Component({
     selector: 'imes-documentonovedad-piu-documentonovedad',
@@ -44,6 +45,7 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
     constructor(
         public override appGlobalInfo: AppGlobalInfo, public override util: Util, public override changeDetectorRef: ChangeDetectorRef,
         public override langMng: LanguageMng, public stdFun: StandardFunctions,
+        private gestorUtil: BHGestorAtomicUtil,
         public override condNavMng: ConditionalNavigationMng, public usrFunc: UserFunctions) {
         super(appGlobalInfo, util, changeDetectorRef, langMng, condNavMng);
         this.idXML = 'Clas_1582535933952300UIPobCl_1';
@@ -73,12 +75,27 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
         if (action.targetClass === ModelConstants.Documentonovedad.name &&
             action.targetUI === ModelConstants.Documentonovedad.siuudescargardocumentoato) {
             // Llamamos al servicio
+
             const docSrv = new DocumentoNovedadServices(this.appGlobalInfo, this.util);
             this.setShowWait(true);
-            docSrv.descargarDocumentoATO(this.getSelectedOids()[0]).then( ( respuesta: {oaurldescarga: string}) => {
-                this.setShowWait(false);
-                if (respuesta && respuesta.oaurldescarga) {
-                    window.open(respuesta.oaurldescarga, '_blank');
+            docSrv.descargarDocumentoATO(this.getSelectedOids()[0]).then( ( respuesta: {
+                oatoken: string,
+                oaurldescarga: string,
+                oanumsolicitud: string
+            }) => {
+                if (respuesta && respuesta.oaurldescarga && respuesta.oatoken) {
+                    this.gestorUtil.descargarArchivo(respuesta.oatoken, respuesta.oaurldescarga, respuesta.oanumsolicitud).then( () => {
+                        this.setShowWait(false);
+                        this.changeDetectorRef.markForCheck();
+                    }).catch( (err: Error) => {
+                        this.setShowWait(false);
+                        this.util.addErrorMessage(err);
+                        this.changeDetectorRef.markForCheck();
+                    });
+                } else {
+                    this.setShowWait(false);
+                    this.util.addErrorMessage(this.gestorUtil.MSG_ERROR_GEN);
+                    this.changeDetectorRef.markForCheck();
                 }
                 this.changeDetectorRef.markForCheck();
             }).catch( (err: Error) => {
@@ -86,7 +103,6 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
                 this.util.addErrorMessage(err);
                 this.changeDetectorRef.markForCheck();
             });
-
         } else {
             super.doAction(actionId);
         }
@@ -208,7 +224,7 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
             ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Documentonovedad.name;
         accItem.targetUI = ModelConstants.Documentonovedad.siuutcrearato;
-
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -224,9 +240,9 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
         accItem.targetClass = ModelConstants.Documentonovedad.name;
         accItem.targetUI = ModelConstants.Documentonovedad.siuudescargardocumentoato;
         accItem.setNoShowProperties('descargarDocumentoATO', 'p_thisdocumentonovedad_oid', '', false);
-
         accItem.showInDefault = false;
         accItem.styleClass = 'accEditGrid';
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -245,7 +261,7 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
             this.langMng.translateText(
             'cls_DocumentoNovedad_svc_TAPROBAR',
             'Aprobar'));
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -264,7 +280,7 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
             this.langMng.translateText(
             'cls_DocumentoNovedad_svc_TDEVOLVER',
             'Devolver'));
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }
@@ -287,6 +303,7 @@ export class DocumentoNovedadPIUuDocumentoNovedadComponent extends AbstractPIU i
         navItem.targetClass = ModelConstants.Logestadodocnov.name;
         navItem.targetUI = ModelConstants.Logestadodocnov.piuulogestadodocnov;
         navItem.rolePath = 'DocumentoNovedad';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
     }

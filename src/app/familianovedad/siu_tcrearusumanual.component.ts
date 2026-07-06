@@ -83,7 +83,7 @@ export class FamiliaNovedadSIUuTCREARUSUMANUALComponent extends AbstractServiceI
         this.puthisFamiliaNovedad.mandatory = true;
         this.puthisFamiliaNovedad.dataType = ModelConstants.Familianovedad.name;
         this.puthisFamiliaNovedad.oidFields = Array(1);
-        this.puthisFamiliaNovedad.oidFieldsTypes = ['autonumerico'];
+        this.puthisFamiliaNovedad.oidFieldsTypes = [Field.dtAuto];
         this.puthisFamiliaNovedad.assignCSS();
         this.fields.push(this.puthisFamiliaNovedad);
 
@@ -357,7 +357,7 @@ export class FamiliaNovedadSIUuTCREARUSUMANUALComponent extends AbstractServiceI
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisFamiliaNovedad.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

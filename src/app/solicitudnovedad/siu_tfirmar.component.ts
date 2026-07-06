@@ -73,7 +73,7 @@ export class SolicitudNovedadSIUuTFIRMARComponent extends AbstractServiceIU impl
         this.puthisSolicitudNovedad.mandatory = true;
         this.puthisSolicitudNovedad.dataType = ModelConstants.Solicitudnovedad.name;
         this.puthisSolicitudNovedad.oidFields = Array(1);
-        this.puthisSolicitudNovedad.oidFieldsTypes = ['autonumerico'];
+        this.puthisSolicitudNovedad.oidFieldsTypes = [Field.dtAuto];
         this.puthisSolicitudNovedad.assignCSS();
         this.fields.push(this.puthisSolicitudNovedad);
 
@@ -306,7 +306,7 @@ export class SolicitudNovedadSIUuTFIRMARComponent extends AbstractServiceIU impl
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisSolicitudNovedad.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

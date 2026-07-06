@@ -68,7 +68,7 @@ export class UsuarioNovedadSIUucambiarPSComponent extends AbstractServiceIU impl
         this.puthisUsuarioNovedad.mandatory = true;
         this.puthisUsuarioNovedad.dataType = ModelConstants.Usuarionovedad.name;
         this.puthisUsuarioNovedad.oidFields = Array(1);
-        this.puthisUsuarioNovedad.oidFieldsTypes = ['autonumerico'];
+        this.puthisUsuarioNovedad.oidFieldsTypes = [Field.dtAuto];
         this.puthisUsuarioNovedad.assignCSS();
         this.fields.push(this.puthisUsuarioNovedad);
 
@@ -237,7 +237,7 @@ export class UsuarioNovedadSIUucambiarPSComponent extends AbstractServiceIU impl
         this.clearValidationMessages();
         let fieldsHasValue = true;
         for (const field of this.puthisUsuarioNovedad.oidFields) {
-            if (!field) {
+            if (this.util.isNull(field)) {
                 fieldsHasValue = false;
                 break;
             }

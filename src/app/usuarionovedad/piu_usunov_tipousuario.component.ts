@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -292,7 +292,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
             this.langMng.translateText(
             'cls_UsuarioNovedad_svc_TMODIFICARMANUAL',
             'Modificar'));
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -317,7 +317,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['familianovedad.solicitud.novedad.aliasnovedad'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -339,7 +339,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['drvestaactivo'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -367,7 +367,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['familianovedad.solicitud.novedad.aliasnovedad'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -389,7 +389,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['familianovedad.solicitud.novedad.aliasnovedad'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -411,7 +411,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['familianovedad.solicitud.novedad.aliasnovedad'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -436,7 +436,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['familianovedad.solicitud.novedad.aliasnovedad'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -461,7 +461,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         accItem.preconditionAttributes.push(
             { agents: [],
               attributes: ['familianovedad.solicitud.novedad.aliasnovedad'] });
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -479,7 +479,7 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
             this.langMng.translateText(
             'cls_UsuarioNovedad_svc_TDELETE',
             'Quitar Usuario'));
-
+        accItem.targetType  = ScenarioType.Delete;
         this.actions.push(accItem);
 
     }

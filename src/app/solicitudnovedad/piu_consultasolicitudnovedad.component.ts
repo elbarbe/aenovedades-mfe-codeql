@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { SolicitudNovedadFilterFuSolicitudNovedaduNumFechas} from './filters/solicitudnovedadfilterfusolicitudnovedadunumfechas';
@@ -168,7 +168,7 @@ export class SolicitudNovedadPIUuConsultaSolicitudNovedadComponent extends Abstr
             'cls_SolicitudNovedad_ds_DS_SolicitudNovedad_Con_item_Clas_1581421428736234CjtoVis_1ICtjoVis_11',
             this.dsnovedaddtiponovedaddnombre);
         dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
-            ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();
@@ -216,7 +216,7 @@ export class SolicitudNovedadPIUuConsultaSolicitudNovedadComponent extends Abstr
         accItem.targetClass = ModelConstants.Solicitudnovedad.name;
         accItem.targetUI = ModelConstants.Solicitudnovedad.siuudummynavegaramodificar;
         accItem.setNoShowProperties('dummyNavegarAModificar', 'p_thissolicitudnovedad_oid', '', false);
-
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }

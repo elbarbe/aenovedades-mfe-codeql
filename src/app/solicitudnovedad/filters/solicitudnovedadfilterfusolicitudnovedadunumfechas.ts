@@ -9,7 +9,7 @@ import { UserFunctions } from '../../common/userFunctions';
 import { AbstractPIU } from '../../common/abstractPIU';
 
 /**
- * Manages the filter F_SolicitudNovedad_NumFechas of class SolicitudNovedad
+ * « Manages the filter F_SolicitudNovedad_NumFechas of class SolicitudNovedad »
  */
 export class SolicitudNovedadFilterFuSolicitudNovedaduNumFechas extends AbstractFilter {
 

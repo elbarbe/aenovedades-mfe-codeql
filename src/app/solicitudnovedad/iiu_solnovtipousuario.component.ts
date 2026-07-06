@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { AccNavItem } from '../common/queryIUElements';
+import { AccNavItem, ScenarioType, OpenScenarioType} from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractIIU } from '../common/abstractIIU';
 import { Field, FieldBlob, FieldDefinedSelection } from '../common/baseIUElements';
@@ -326,6 +326,7 @@ export class SolicitudNovedadIIUuSolNovTipoUsuarioComponent extends AbstractIIU 
         accItem.targetClass = ModelConstants.Solicitudnovedad.name;
         accItem.targetUI = ModelConstants.Solicitudnovedad.siuutmarcarcompletada;
         accItem.setNoShowProperties('TMARCARCOMPLETADA', 'p_thissolicitudnovedad_oid', '', false);
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -339,6 +340,7 @@ export class SolicitudNovedadIIUuSolNovTipoUsuarioComponent extends AbstractIIU 
         accItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name];
         accItem.targetClass = ModelConstants.Protecciondatos.name;
         accItem.targetUI = ModelConstants.Protecciondatos.siuutcrearsolnovedad;
+        accItem.targetType  = ScenarioType.Create;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -353,6 +355,7 @@ export class SolicitudNovedadIIUuSolNovTipoUsuarioComponent extends AbstractIIU 
             ModelConstants.Mesadeapoyo.name];
         accItem.targetClass = ModelConstants.Solicitudnovedad.name;
         accItem.targetUI = ModelConstants.Solicitudnovedad.siuutfirmar;
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
         accItem = new AccNavItem();
@@ -369,6 +372,7 @@ export class SolicitudNovedadIIUuSolNovTipoUsuarioComponent extends AbstractIIU 
         accItem.targetClass = ModelConstants.Globalservices.name;
         accItem.targetUI = ModelConstants.Globalservices.siuuogetreportsolnov;
         accItem.setOpenNewWindowProperties('OGETREPORTSOLNOV', 'ptsolicitudnovedad_oid', 'oaarchivo', 'oanombrearchivo');
+        accItem.targetType  = ScenarioType.Normal;
         this.actions.push(accItem);
 
     }
@@ -547,6 +551,7 @@ export class SolicitudNovedadIIUuSolNovTipoUsuarioComponent extends AbstractIIU 
         navItem.targetClass = ModelConstants.Documentonovedad.name;
         navItem.targetUI = ModelConstants.Documentonovedad.piuudocumentonovedad;
         navItem.rolePath = 'Solicitud';
+        navItem.targetType  = ScenarioType.Population;
         this.navigations.push(navItem);
 
     }
