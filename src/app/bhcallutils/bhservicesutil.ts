@@ -66,7 +66,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {
@@ -127,7 +126,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {
@@ -178,7 +176,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {
@@ -211,7 +208,7 @@ export class BHServicesUtil {
         // Tratamos los de coverageHeader
         const listaContratos: string[] = [];
 
-        if (response.coverageHeaderResponse) {
+        if (response?.coverageHeaderResponse?.data) {
             const mapaContratos: Map<string, any> = new Map<string, any>();
             for (const contrato of response.coverageHeaderResponse.data) {
                 if (contrato.coverage && contrato.coverage.length > 0) {
@@ -262,7 +259,7 @@ export class BHServicesUtil {
             }
         }
 
-        if (response.coverResponse?.coverFamilyResponse) {
+        if (response?.coverResponse?.coverFamilyResponse) {
             const mapaContratos: Map<string, any> = new Map<string, any>();
             for (const contrato of response.coverResponse.coverFamilyResponse) {
                 const clave = BHServicesUtil.getValorElementoPorClave(contrato.insurancePlan?.identifier, 'type', 'CODIGO_PRODUCTO', 'value') +
@@ -348,7 +345,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {
@@ -414,7 +410,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {
@@ -595,7 +590,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         return new Promise<any>((resolve, reject) => {
@@ -630,7 +624,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         return new Promise<any>((resolve, reject) => {
@@ -665,7 +658,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {
@@ -713,7 +705,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {
@@ -751,7 +742,6 @@ export class BHServicesUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const peticion = {

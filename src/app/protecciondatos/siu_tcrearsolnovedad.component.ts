@@ -2,7 +2,6 @@ import { Component, ChangeDetectionStrategy, OnInit, ChangeDetectorRef } from '@
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Field } from '../common/baseIUElements';
 import { AbstractServiceIU } from '../common/abstractSIU';
-import { ExchangeInfo } from '../common/app.exchangeinfo';
 import { ModelConstants } from '../common/model.constants';
 import { Util } from '../common/app.utils';
 import { StandardFunctions } from '../common/standardFunctions';

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Util } from '../common/app.utils';
 import { Injectable } from '@angular/core';
-import { ErrorInformation, RequestError } from '../common/answerRequestInformation';
+import { ErrorInformation } from '../common/answerRequestInformation';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { environment } from 'src/environments/environment';
 
@@ -41,7 +41,6 @@ export class BHGestorAtomicUtil {
         return new Promise<void>((resolve, reject) => {
             let headers = new HttpHeaders();
             headers = headers.set('Authorization', 'Bearer ' + tkn);
-            const responseType = 'json';
             const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json'};
             const startTime = new Date();
             this.httpClient.get(url, options).subscribe(
@@ -186,7 +185,7 @@ export class BHGestorAtomicUtil {
             const tamanyoMax = this.appGlobalInfo.getLoggedUserInfo().userCache?.sizeAdjuntos ?
                 this.appGlobalInfo.getLoggedUserInfo().userCache?.sizeAdjuntos : 5;
             if (parseFloat(tamanyoMax) < fileMB) {
-                reject(new Error('El tamaño del archivo excede los ' + tamanyoMax + ' Mb'))
+                reject(new Error('El tamaño del archivo excede los ' + tamanyoMax + ' Mb'));
                 return;
             }
 
@@ -224,21 +223,7 @@ export class BHGestorAtomicUtil {
             // body
             const miform = new FormData();
             miform.append("data", JSON.stringify(datosArchivo));
-
             miform.append("file", file);
-            const settings = {
-                "url": environment.bhservicesinfo.documental.url,
-                "method": "POST",
-                "timeout": 0,
-                "headers": {
-                    "Authorization": "Bearer " + token
-                },
-                "processData": false,
-                "mimeType": "multipart/form-data",
-                "contentType": false,
-                "data": miform
-            };
-
             // Asignamos valor al campo de la request
             respuesta.request = JSON.stringify(datosArchivo);
             respuesta.nombreFichero = nombreDocAsignado;
@@ -352,7 +337,6 @@ export class BHGestorAtomicUtil {
             headers = headers.set('Authorization', 'Bearer ' + this.appGlobalInfo.getLoggedUserInfo().token);
         }
         headers = headers.set('API-Version', this.appGlobalInfo.apiVersion);
-        const responseType = 'json';
         const options = { headers, observe: 'response' as 'body', responseType: 'json' as 'json', withCredentials: true };
 
         const request = {

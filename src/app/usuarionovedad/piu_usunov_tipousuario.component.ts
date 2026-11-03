@@ -1,7 +1,7 @@
 import { ChangeDetectorRef } from '@angular/core';
 import { AppGlobalInfo } from '../app.appglobalinfo';
 import { Util } from '../common/app.utils';
-import { DisplaySetItem, AccNavItem, ScenarioType, OpenScenarioType } from '../common/queryIUElements';
+import { DisplaySetItem, AccNavItem, ScenarioType } from '../common/queryIUElements';
 import { ModelConstants } from '../common/model.constants';
 import { AbstractPIU } from '../common/abstractPIU';
 import { DefinedSelections } from '../common/definedSelection';
@@ -218,7 +218,8 @@ export class UsuarioNovedadPIUuUsuNovuTipoUsuarioComponent extends AbstractPIU {
         dsItem.alias = this.langMng.translateText(
             'cls_UsuarioNovedad_ds_DS_UsuNov_TipoUsuario_item_Clas_1581442138112529CjtoVis_4ICtjoVis_4',
             this.dsestadobeneficiarioddescripcion);
-        dsItem.agents = [];
+        dsItem.agents = [ModelConstants.Admin.name, ModelConstants.Superadmin.name, ModelConstants.Asesor.name,
+            ModelConstants.Afiliaciones.name, ModelConstants.Gestor.name, ModelConstants.Mesadeapoyo.name];
         this.displaySet.push(dsItem);
 
         dsItem = new DisplaySetItem();

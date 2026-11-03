@@ -571,7 +571,7 @@ export class FamiliaNovedadSIUuTMODIFICARMANUALComponent extends AbstractService
      * @param groupId Group id.
      */
     public isGroupVisible(groupId: string): boolean {
-        let isVisible = true;
+        let isVisible;
 
         if (groupId === '2') {
             isVisible = this.ptTipoIdentificacion.visible ||

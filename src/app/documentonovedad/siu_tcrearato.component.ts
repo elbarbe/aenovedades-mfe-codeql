@@ -474,7 +474,7 @@ export class DocumentoNovedadSIUuTCREARATOComponent extends AbstractServiceIU im
     private executeDependecyRules1ptUsuario(): void {
         this.cacheDependencyRules.counter++;
         this.addQueryInstanceFromField(this.ptUsuario,
-                'tipoidentificacion.nombrecorto,numidentificacion');
+                'numidentificacion');
         this.notifyCallToTheBackEnd();
         this.cacheDependencyRules.searchAll().then(() => {
             this.notifyAnswerFromToTheBackEnd();
@@ -496,8 +496,8 @@ export class DocumentoNovedadSIUuTCREARATOComponent extends AbstractServiceIU im
         const varptusuario = this.getFirstInstanceFromCache(this.ptUsuario);
         // v <> NULL
         if (varptusuario && !this.util.isNull(varptusuario)) {
-            // ptNumIdentUsuario.SetValue( v.tipoidentificacion.nombrecorto + v.numidentificacion )
-            this.ptNumIdentUsuario.setValue(varptusuario.get('tipoidentificacion.nombrecorto') + varptusuario.get('numidentificacion'));
+            // ptNumIdentUsuario.SetValue( v.numidentificacion )
+            this.ptNumIdentUsuario.setValue(varptusuario.get('numidentificacion'));
             this.executeDependecyRulesptnumidentusuario('SetValue', true);
         }
         this.executePendingDependencyRules();
