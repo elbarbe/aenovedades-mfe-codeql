@@ -413,7 +413,6 @@ export class SolicitudNovedadIIUuSolNovTipoUsuarioComponent extends AbstractIIU 
 
         // Acciones del maestro familia
         for (const accion of masterFamilia.actions ) {
-            const nombreClase = accion.targetClass;
             const nombreUI = accion.targetUI;
 
             if (nombreUI === ModelConstants.Solicitudnovedad.siuutaddfamilia &&
@@ -454,7 +453,6 @@ export class SolicitudNovedadIIUuSolNovTipoUsuarioComponent extends AbstractIIU 
         // Detalle de usuarios
         const detalleUsuarios = container.d0.d0;
         for (const accion of detalleUsuarios.actions ) {
-            const nombreClase = accion.targetClass;
             const nombreUI = accion.targetUI;
 
             if (nombreUI === ModelConstants.Usuarionovedad.siuutcambiartipoident &&

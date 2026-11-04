@@ -445,7 +445,6 @@ export class SolicitudNovedadIIUuSolNovTipoContratoComponent extends AbstractIIU
         // Maestro principal
         // Acciones del maestro
         for (const accion of this.actions ) {
-            const nombreClase = accion.targetClass;
             const nombreUI = accion.targetUI;
 
             if (nombreUI === ModelConstants.Solicitudnovedad.siuutchgnuevaperiodicidad &&
@@ -472,7 +471,6 @@ export class SolicitudNovedadIIUuSolNovTipoContratoComponent extends AbstractIIU
 
         // Acciones del detalle contratante
         for (const accion of detContratante.actions ) {
-            const nombreClase = accion.targetClass;
             const nombreUI = accion.targetUI;
 
             if (nombreUI === ModelConstants.Solicitudnovedad.siuumodificarnuevonombre &&

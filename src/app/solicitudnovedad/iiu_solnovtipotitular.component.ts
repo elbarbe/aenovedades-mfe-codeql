@@ -411,7 +411,6 @@ export class SolicitudNovedadIIUuSolNovTipoTitularComponent extends AbstractIIU 
         // Acciones
         const detFamilia =  master.d0.master;
         for (const accion of detFamilia.actions ) {
-            const nombreClase = accion.targetClass;
             const nombreUI = accion.targetUI;
 
             if (nombreUI === ModelConstants.Solicitudnovedad.siuutaddfamilia && !permiteAddFamiliaDesdeCORE) {
@@ -466,7 +465,6 @@ export class SolicitudNovedadIIUuSolNovTipoTitularComponent extends AbstractIIU 
         // Detalle de usuarios
         const detUsuarios =  master.d0.d0;
         for (const accion of detUsuarios.actions ) {
-            const nombreClase = accion.targetClass;
             const nombreUI = accion.targetUI;
 
             if (nombreUI === ModelConstants.Usuarionovedad.siuutcambiarparentesco &&
